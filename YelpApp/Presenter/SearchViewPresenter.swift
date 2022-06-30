@@ -33,7 +33,8 @@ class SearchViewPresenter {
     private func retrieveItems() {
         print("Presenter retrieves station from API")
         
-        let headers = HTTPHeaders(["Authorization": "Bearer jqJWAk-7WYqlFHYYYPO1n1ZXmIX5HqyZa5ND8dY39W9t95N1-uaF7EWw0ws4NTSaTAO2D2qLXlG2HvYmF9sL-PMddInum1okvFA_O_Jov0t9x4A8RtXBcVMvIxq7YnYx"])
+        // TODO update bearer token
+        let headers = HTTPHeaders(["Authorization": "Bearer XXX"])
         
         let request = AF.request("https://api.yelp.com/v3/businesses/search?location=NYC", headers: headers)
         

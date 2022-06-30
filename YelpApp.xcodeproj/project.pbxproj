@@ -13,8 +13,6 @@
 		28446F26286CC30C003C876B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28446F24286CC30C003C876B /* Main.storyboard */; };
 		28446F28286CC30E003C876B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28446F27286CC30E003C876B /* Assets.xcassets */; };
 		28446F2B286CC30E003C876B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28446F29286CC30E003C876B /* LaunchScreen.storyboard */; };
-		28446F4B286CC623003C876B /* BusinessViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28446F4A286CC623003C876B /* BusinessViewPresenter.swift */; };
-		28446F4D286CC70F003C876B /* BusinessDetailsDropCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28446F4C286CC70F003C876B /* BusinessDetailsDropCell.swift */; };
 		28446F4F286CD4B2003C876B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28446F4E286CD4B2003C876B /* SearchViewController.swift */; };
 		286BB191286CF3DB006F4BE3 /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB190286CF3DB006F4BE3 /* LocationSearchView.swift */; };
 		286BB199286CF43E006F4BE3 /* Hour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB192286CF43E006F4BE3 /* Hour.swift */; };
@@ -24,7 +22,6 @@
 		286BB19D286CF43E006F4BE3 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB196286CF43E006F4BE3 /* Location.swift */; };
 		286BB19E286CF43E006F4BE3 /* BusinessResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB197286CF43E006F4BE3 /* BusinessResults.swift */; };
 		286BB19F286CF43E006F4BE3 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB198286CF43E006F4BE3 /* Coordinates.swift */; };
-		286BB1A1286CF476006F4BE3 /* BusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB1A0286CF475006F4BE3 /* BusinessViewController.swift */; };
 		286BB1A3286CF4A9006F4BE3 /* SpecialHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB1A2286CF4A9006F4BE3 /* SpecialHour.swift */; };
 		286BB1A5286CF4E0006F4BE3 /* LocationSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 286BB1A4286CF4E0006F4BE3 /* LocationSearchView.xib */; };
 		286BB1A7286D4FDD006F4BE3 /* SearchViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB1A6286D4FDD006F4BE3 /* SearchViewPresenter.swift */; };
@@ -43,8 +40,6 @@
 		28446F27286CC30E003C876B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		28446F2A286CC30E003C876B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		28446F2C286CC30E003C876B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		28446F4A286CC623003C876B /* BusinessViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessViewPresenter.swift; sourceTree = "<group>"; };
-		28446F4C286CC70F003C876B /* BusinessDetailsDropCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailsDropCell.swift; sourceTree = "<group>"; };
 		28446F4E286CD4B2003C876B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		286BB190286CF3DB006F4BE3 /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
 		286BB192286CF43E006F4BE3 /* Hour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hour.swift; sourceTree = "<group>"; };
@@ -54,7 +49,6 @@
 		286BB196286CF43E006F4BE3 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		286BB197286CF43E006F4BE3 /* BusinessResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessResults.swift; sourceTree = "<group>"; };
 		286BB198286CF43E006F4BE3 /* Coordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
-		286BB1A0286CF475006F4BE3 /* BusinessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessViewController.swift; sourceTree = "<group>"; };
 		286BB1A2286CF4A9006F4BE3 /* SpecialHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialHour.swift; sourceTree = "<group>"; };
 		286BB1A4286CF4E0006F4BE3 /* LocationSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationSearchView.xib; sourceTree = "<group>"; };
 		286BB1A6286D4FDD006F4BE3 /* SearchViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewPresenter.swift; sourceTree = "<group>"; };
@@ -130,7 +124,6 @@
 		28446F43286CC4F3003C876B /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				28446F4A286CC623003C876B /* BusinessViewPresenter.swift */,
 				286BB1A6286D4FDD006F4BE3 /* SearchViewPresenter.swift */,
 			);
 			path = Presenter;
@@ -139,8 +132,6 @@
 		28446F44286CC4FC003C876B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				286BB1A0286CF475006F4BE3 /* BusinessViewController.swift */,
-				28446F4C286CC70F003C876B /* BusinessDetailsDropCell.swift */,
 				28446F4E286CD4B2003C876B /* SearchViewController.swift */,
 				286BB190286CF3DB006F4BE3 /* LocationSearchView.swift */,
 				286BB1A4286CF4E0006F4BE3 /* LocationSearchView.xib */,
@@ -287,18 +278,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				286BB1A1286CF476006F4BE3 /* BusinessViewController.swift in Sources */,
 				28446F23286CC30C003C876B /* ViewController.swift in Sources */,
 				28E36259286E326C006B6D5F /* BusinessDetailsViewViewController.swift in Sources */,
 				286BB1A3286CF4A9006F4BE3 /* SpecialHour.swift in Sources */,
-				28446F4B286CC623003C876B /* BusinessViewPresenter.swift in Sources */,
 				28446F1F286CC30C003C876B /* AppDelegate.swift in Sources */,
 				286BB199286CF43E006F4BE3 /* Hour.swift in Sources */,
 				28E36254286DF0D9006B6D5F /* BusinessDetailsCell.swift in Sources */,
 				28446F4F286CD4B2003C876B /* SearchViewController.swift in Sources */,
 				286BB191286CF3DB006F4BE3 /* LocationSearchView.swift in Sources */,
 				286BB19A286CF43E006F4BE3 /* Business.swift in Sources */,
-				28446F4D286CC70F003C876B /* BusinessDetailsDropCell.swift in Sources */,
 				286BB19F286CF43E006F4BE3 /* Coordinates.swift in Sources */,
 				286BB19B286CF43E006F4BE3 /* Open.swift in Sources */,
 				286BB19E286CF43E006F4BE3 /* BusinessResults.swift in Sources */,
