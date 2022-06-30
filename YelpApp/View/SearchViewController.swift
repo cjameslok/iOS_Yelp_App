@@ -12,24 +12,18 @@ protocol SearchView: AnyObject{
     func onBusinessRetrieval(businessList: [Business])
 }
 
-class SearchViewController: UIViewController, UITableViewDataSource {
+class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
      
     @IBOutlet weak var searchTypeControl: UISegmentedControl!
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var termTextField: UITextField!
-    @IBOutlet weak var resultsTable: UITableView!
+    @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var locationContainer: UIView!
 
     
     var presenter: SearchViewPresenter!
     var businesses: [Business] = []
     var selectedIndex: IndexPath?
-    
-    let data = ["New York, NY", "Los Angeles, CA", "Chicago, IL", "Houston, TX",
-            "Philadelphia, PA", "Phoenix, AZ", "San Diego, CA", "San Antonio, TX",
-            "Dallas, TX", "Detroit, MI", "San Jose, CA", "Indianapolis, IN",
-            "Jacksonville, FL", "San Francisco, CA", "Columbus, OH", "Austin, TX",
-            "Memphis, TN", "Baltimore, MD", "Charlotte, ND", "Fort Worth, TX"]
     
     var safeArea: UILayoutGuide!
 //    let tableView = UITableView()
@@ -52,7 +46,10 @@ class SearchViewController: UIViewController, UITableViewDataSource {
         presenter.viewDidLoad()
         
         safeArea = view.layoutMarginsGuide
-        resultsTable.dataSource = self
+        resultsTableView.dataSource = self
+        resultsTableView.delegate = self
+        resultsTableView.register(UINib(nibName: "BusinessDetailsCell", bundle: nil), forCellReuseIdentifier: "BusinessDetailsCell")
+
         
 //        toggleSearch()
  
@@ -104,23 +101,44 @@ extension SearchViewController: SearchView {
     
     func onBusinessRetrieval(businessList: [Business]) {
         self.businesses = businessList
-        self.resultsTable.reloadData()
+        self.resultsTableView.reloadData()
     }
     
 }
 
 extension SearchViewController {
     
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+//        cell.textLabel?.text = businesses[indexPath.row].name
+//        return cell
+//    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath)
+    }
+        
+        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return businesses.count
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = businesses[indexPath.row].name
-            return cell
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessDetailsCell", for: indexPath) as! BusinessDetailsCell
         
-        
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return businesses.count
-        }
+
+        cell.nameLabel.text = businesses[indexPath.row].name
+        cell.priceLabel.text = businesses[indexPath.row].price
+
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+
+    }
+    
 }
 
 
