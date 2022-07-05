@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import MapKit
+import CoreLocation
 
 protocol SearchView: AnyObject{
     func onBusinessRetrieval(businessList: [Business])
@@ -19,16 +21,21 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var termTextField: UITextField!
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var locationContainer: UIView!
+    
+    @IBOutlet weak var sortButton: UIButton!
+    @IBOutlet weak var distanceSortingSelector: UICommand!
+    @IBOutlet weak var ratingSortingSelector: UICommand!
 
+    @IBOutlet weak var searchButton: UIButton!
     
     var presenter: SearchViewPresenter!
     var businesses: [Business] = []
     var selectedIndex: IndexPath?
     
     var safeArea: UILayoutGuide!
-//    let tableView = UITableView()
-//
-//    let locationSearchView = LocationSearchView()
+    let locationManager = CLLocationManager()
+    var isLocationMode = false
+
     
     fileprivate let container: UIView = {
         let container = UIView()
@@ -41,6 +48,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavBar()
+
+        
         let presenter = SearchViewPresenter(view: self)
         self.presenter = presenter
         presenter.viewDidLoad()
@@ -49,51 +59,104 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         resultsTableView.dataSource = self
         resultsTableView.delegate = self
         resultsTableView.register(UINib(nibName: "BusinessDetailsCell", bundle: nil), forCellReuseIdentifier: "BusinessDetailsCell")
-
         
-//        toggleSearch()
- 
+        
+
     }
+    
+
+    
+    func setupNavBar() {
+        navigationItem.title = "Search Reviews"
+        
+    }
+    
+    func setupLocationManager() {
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    @IBAction func sortTableByDistance(_ sender: Any) {
+        
+        let sortedBusinesses = businesses.sorted {
+            guard let d0 = $0.distance, let d1 = $1.distance else { return false }
+            return d0 < d1
+        }
+        self.businesses = sortedBusinesses
+        resultsTableView.reloadData()
+        sortButton.setTitle("by distance", for: .normal)
+    }
+    
+    @IBAction func sortTableByRating(_ sender: Any) {
+        
+        let sortedBusinesses = businesses.sorted {
+            guard let r0 = $0.rating, let r1 = $1.rating else { return false }
+            return r0 > r1
+        }
+        self.businesses = sortedBusinesses
+        resultsTableView.reloadData()
+        sortButton.setTitle("by rating", for: .normal)
+
+    }
+    
     
     
     @IBAction func onSearchClicked(_ sender: Any) {
-        print("clicked")
-        
+        sortButton.setTitle("Sort", for: .normal)
         guard let location = locationTextField.text else {return}
-        
         guard let term = termTextField.text else {return}
         
+        if(isLocationMode){
+            guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
+            presenter.retrieveBusinessesByCoordinate(term: term, latitude: locValue.latitude, longitude: locValue.longitude)
+        }else {
+            presenter.retrieveBusinesses(location: location, term: term)
+        }
         
-        presenter.retrieveBusinesses(location: location, term: term)
         
-//        switch searchTypeControl.selectedSegmentIndex {
-//        case 0:
-//            presenter.retrieveBusinesses(location: locationTextField.text, term: termTextField.text)
-//        case 1:
-//            presenter.searchBusinessByName(nameTextField.text)
-//
-//        }
+        
     }
+
     
     @IBAction func onSegementChanged(_ sender: UISegmentedControl) {
-//        toggleSearch()
+        toggleSearch()
         print(sender.selectedSegmentIndex)
     }
     
-//    fileprivate func toggleSearch() {
-//        switch searchTypeControl.selectedSegmentIndex {
-//        case 0:
-//            locationContainer.isHidden = false
-//            nameContainer.isHidden = true
-//        case 1:
-//            locationContainer.isHidden = true
-//            nameContainer.isHidden = false
-//        default:
-//            locationContainer.isHidden = true
-//            nameContainer.isHidden = true
-//        }
-//    }
+    fileprivate func toggleSearch() {
+        switch searchTypeControl.selectedSegmentIndex {
+        case 0:
+            isLocationMode = false
+            locationTextField.isHidden = false
+            searchButton.setTitle("Search", for: .normal)
+        case 1:
+            isLocationMode = true
+            setupLocationManager()
+            locationTextField.isHidden = true
+            searchButton.setTitle("Search near me", for: .normal)
+        default:
+            locationTextField.isHidden = false
+        }
+    }
     
+    
+    
+    
+}
+
+extension SearchViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+    }
     
 }
 
@@ -115,8 +178,7 @@ extension SearchViewController {
 //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
-    }
+        self.navigationController?.pushViewController(BusinessDetailsViewViewController(business: businesses[indexPath.row] ), animated: true)    }
         
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,7 +191,15 @@ extension SearchViewController {
 
         cell.nameLabel.text = businesses[indexPath.row].name
         cell.priceLabel.text = businesses[indexPath.row].price
-
+        
+        if let rating = businesses[indexPath.row].rating {
+            cell.rating = rating
+            cell.ratingLabel.text = String(rating) + " / 5"
+        }
+        else {
+            cell.ratingLabel.text = "N/A"
+            
+        }
 
         return cell
     }

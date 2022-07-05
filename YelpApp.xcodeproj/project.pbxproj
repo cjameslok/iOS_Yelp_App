@@ -14,7 +14,6 @@
 		28446F28286CC30E003C876B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28446F27286CC30E003C876B /* Assets.xcassets */; };
 		28446F2B286CC30E003C876B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28446F29286CC30E003C876B /* LaunchScreen.storyboard */; };
 		28446F4F286CD4B2003C876B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28446F4E286CD4B2003C876B /* SearchViewController.swift */; };
-		286BB191286CF3DB006F4BE3 /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB190286CF3DB006F4BE3 /* LocationSearchView.swift */; };
 		286BB199286CF43E006F4BE3 /* Hour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB192286CF43E006F4BE3 /* Hour.swift */; };
 		286BB19A286CF43E006F4BE3 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB193286CF43E006F4BE3 /* Business.swift */; };
 		286BB19B286CF43E006F4BE3 /* Open.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB194286CF43E006F4BE3 /* Open.swift */; };
@@ -23,12 +22,13 @@
 		286BB19E286CF43E006F4BE3 /* BusinessResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB197286CF43E006F4BE3 /* BusinessResults.swift */; };
 		286BB19F286CF43E006F4BE3 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB198286CF43E006F4BE3 /* Coordinates.swift */; };
 		286BB1A3286CF4A9006F4BE3 /* SpecialHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB1A2286CF4A9006F4BE3 /* SpecialHour.swift */; };
-		286BB1A5286CF4E0006F4BE3 /* LocationSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 286BB1A4286CF4E0006F4BE3 /* LocationSearchView.xib */; };
 		286BB1A7286D4FDD006F4BE3 /* SearchViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB1A6286D4FDD006F4BE3 /* SearchViewPresenter.swift */; };
 		28E36254286DF0D9006B6D5F /* BusinessDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E36253286DF0D9006B6D5F /* BusinessDetailsCell.swift */; };
 		28E36256286DF0EC006B6D5F /* BusinessDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E36255286DF0EC006B6D5F /* BusinessDetailsCell.xib */; };
 		28E36259286E326C006B6D5F /* BusinessDetailsViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E36257286E326C006B6D5F /* BusinessDetailsViewViewController.swift */; };
 		28E3625A286E326C006B6D5F /* BusinessDetailsViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E36258286E326C006B6D5F /* BusinessDetailsViewViewController.xib */; };
+		28E362612870BA8B006B6D5F /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E3625F2870BA8B006B6D5F /* ResultsTableViewController.swift */; };
+		28E362622870BA8B006B6D5F /* ResultsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E362602870BA8B006B6D5F /* ResultsTableViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +41,6 @@
 		28446F2A286CC30E003C876B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		28446F2C286CC30E003C876B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28446F4E286CD4B2003C876B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		286BB190286CF3DB006F4BE3 /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
 		286BB192286CF43E006F4BE3 /* Hour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hour.swift; sourceTree = "<group>"; };
 		286BB193286CF43E006F4BE3 /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		286BB194286CF43E006F4BE3 /* Open.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Open.swift; sourceTree = "<group>"; };
@@ -50,12 +49,13 @@
 		286BB197286CF43E006F4BE3 /* BusinessResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessResults.swift; sourceTree = "<group>"; };
 		286BB198286CF43E006F4BE3 /* Coordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
 		286BB1A2286CF4A9006F4BE3 /* SpecialHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialHour.swift; sourceTree = "<group>"; };
-		286BB1A4286CF4E0006F4BE3 /* LocationSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationSearchView.xib; sourceTree = "<group>"; };
 		286BB1A6286D4FDD006F4BE3 /* SearchViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewPresenter.swift; sourceTree = "<group>"; };
 		28E36253286DF0D9006B6D5F /* BusinessDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailsCell.swift; sourceTree = "<group>"; };
 		28E36255286DF0EC006B6D5F /* BusinessDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusinessDetailsCell.xib; sourceTree = "<group>"; };
 		28E36257286E326C006B6D5F /* BusinessDetailsViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailsViewViewController.swift; sourceTree = "<group>"; };
 		28E36258286E326C006B6D5F /* BusinessDetailsViewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusinessDetailsViewViewController.xib; sourceTree = "<group>"; };
+		28E3625F2870BA8B006B6D5F /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
+		28E362602870BA8B006B6D5F /* ResultsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsTableViewController.xib; sourceTree = "<group>"; };
 		542C5646EFBF517371C57446 /* Pods-YelpApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YelpApp.debug.xcconfig"; path = "Target Support Files/Pods-YelpApp/Pods-YelpApp.debug.xcconfig"; sourceTree = "<group>"; };
 		AB881158799D812EDD642CB0 /* Pods-YelpApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YelpApp.release.xcconfig"; path = "Target Support Files/Pods-YelpApp/Pods-YelpApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,12 +133,12 @@
 			isa = PBXGroup;
 			children = (
 				28446F4E286CD4B2003C876B /* SearchViewController.swift */,
-				286BB190286CF3DB006F4BE3 /* LocationSearchView.swift */,
-				286BB1A4286CF4E0006F4BE3 /* LocationSearchView.xib */,
 				28E36253286DF0D9006B6D5F /* BusinessDetailsCell.swift */,
 				28E36255286DF0EC006B6D5F /* BusinessDetailsCell.xib */,
 				28E36257286E326C006B6D5F /* BusinessDetailsViewViewController.swift */,
 				28E36258286E326C006B6D5F /* BusinessDetailsViewViewController.xib */,
+				28E3625F2870BA8B006B6D5F /* ResultsTableViewController.swift */,
+				28E362602870BA8B006B6D5F /* ResultsTableViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -220,8 +220,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28E362622870BA8B006B6D5F /* ResultsTableViewController.xib in Resources */,
 				28446F2B286CC30E003C876B /* LaunchScreen.storyboard in Resources */,
-				286BB1A5286CF4E0006F4BE3 /* LocationSearchView.xib in Resources */,
 				28446F28286CC30E003C876B /* Assets.xcassets in Resources */,
 				28446F26286CC30C003C876B /* Main.storyboard in Resources */,
 				28E3625A286E326C006B6D5F /* BusinessDetailsViewViewController.xib in Resources */,
@@ -279,13 +279,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				28446F23286CC30C003C876B /* ViewController.swift in Sources */,
+				28E362612870BA8B006B6D5F /* ResultsTableViewController.swift in Sources */,
 				28E36259286E326C006B6D5F /* BusinessDetailsViewViewController.swift in Sources */,
 				286BB1A3286CF4A9006F4BE3 /* SpecialHour.swift in Sources */,
 				28446F1F286CC30C003C876B /* AppDelegate.swift in Sources */,
 				286BB199286CF43E006F4BE3 /* Hour.swift in Sources */,
 				28E36254286DF0D9006B6D5F /* BusinessDetailsCell.swift in Sources */,
 				28446F4F286CD4B2003C876B /* SearchViewController.swift in Sources */,
-				286BB191286CF3DB006F4BE3 /* LocationSearchView.swift in Sources */,
 				286BB19A286CF43E006F4BE3 /* Business.swift in Sources */,
 				286BB19F286CF43E006F4BE3 /* Coordinates.swift in Sources */,
 				286BB19B286CF43E006F4BE3 /* Open.swift in Sources */,

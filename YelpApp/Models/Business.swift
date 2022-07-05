@@ -23,6 +23,7 @@ struct Business: Decodable {
     var hours: [Hour]?
 //    var transactions: [Any]
     var specialHours: [SpecialHour]?
+    var distance: Double?
 
     
 }

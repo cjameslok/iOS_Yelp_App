@@ -28,7 +28,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MxB-nu-21S">
-                    <rect key="frame" x="16" y="69" width="110" height="23"/>
+                    <rect key="frame" x="20" y="74" width="110" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tiv-V6-aAf">
@@ -52,12 +52,19 @@
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="x7h-TF-0bS">
                     <rect key="frame" x="268" y="43" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5 / 5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXK-lP-U1q">
+                    <rect key="frame" x="138" y="77" width="53" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -70,7 +77,12 @@
                 <outlet property="RatingView" destination="MxB-nu-21S" id="f2m-HT-jVN"/>
                 <outlet property="nameLabel" destination="keE-Dh-0tL" id="uCa-3V-uyu"/>
                 <outlet property="priceLabel" destination="1Mj-W2-yuv" id="GHM-6W-QM0"/>
-                <outlet property="star1Image" destination="s43-xf-poP" id="tYW-mI-1Db"/>
+                <outlet property="ratingLabel" destination="SXK-lP-U1q" id="Bmd-dX-TFf"/>
+                <outletCollection property="StarImageCollection" destination="s43-xf-poP" collectionClass="NSMutableArray" id="xF0-9V-sVp"/>
+                <outletCollection property="StarImageCollection" destination="UH9-gA-c1I" collectionClass="NSMutableArray" id="2Ri-uU-XbB"/>
+                <outletCollection property="StarImageCollection" destination="gpS-Db-0AZ" collectionClass="NSMutableArray" id="O8D-m7-Xxr"/>
+                <outletCollection property="StarImageCollection" destination="NPg-F3-Zmf" collectionClass="NSMutableArray" id="ECE-2G-MxD"/>
+                <outletCollection property="StarImageCollection" destination="9YK-MG-kek" collectionClass="NSMutableArray" id="pvk-0A-umJ"/>
             </connections>
             <point key="canvasLocation" x="-1.4492753623188408" y="97.767857142857139"/>
         </view>

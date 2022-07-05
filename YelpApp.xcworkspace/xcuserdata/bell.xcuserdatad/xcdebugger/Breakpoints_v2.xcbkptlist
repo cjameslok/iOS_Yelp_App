@@ -14,25 +14,9 @@
             filePath = "YelpApp/View/SearchViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "onSearchClicked(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D0F20EAC-7112-447F-B25C-744244BF3032"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YelpApp/View/SearchViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "123"
             endingLineNumber = "123"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkName = "onSearchClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -46,8 +30,8 @@
             filePath = "YelpApp/View/SearchViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "SearchViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -62,8 +46,8 @@
             filePath = "YelpApp/View/SearchViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -71,32 +55,172 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "ED94B037-6BD0-421F-A91D-17E8B7621434"
+            uuid = "67841A42-A059-47AD-BD39-F1578D641CA7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "YelpApp/View/SearchViewController.swift"
+            filePath = "YelpApp/View/BusinessDetailsCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "layoutSubviews()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "920B688C-D2AF-440B-9F73-1804383BADDC"
+            uuid = "4CE18C6C-8AB6-4C8B-984C-12777B3106D1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YelpApp/View/BusinessDetailsCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "layoutSubviews()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8954A574-96CF-45A8-A603-477F88A3F40B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YelpApp/View/BusinessDetailsCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "layoutSubviews()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1C65BA7B-0A1D-4DEB-A63C-0114A718C295"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YelpApp/View/SearchViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "SearchViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "1C65BA7B-0A1D-4DEB-A63C-0114A718C295 - 743b8279bce520b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "YelpApp.SearchViewController.searchTypeControl.getter : Swift.Optional&lt;__C.UISegmentedControl&gt;"
+                  moduleName = "YelpApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bell/Documents/Swift%20Training/YelpApp/YelpApp/View/SearchViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "85">
+               </Location>
+               <Location
+                  uuid = "1C65BA7B-0A1D-4DEB-A63C-0114A718C295 - dbbbdab15b707bf7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "YelpApp.SearchViewController.searchTypeControl.setter : Swift.Optional&lt;__C.UISegmentedControl&gt;"
+                  moduleName = "YelpApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bell/Documents/Swift%20Training/YelpApp/YelpApp/View/SearchViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "1C65BA7B-0A1D-4DEB-A63C-0114A718C295 - a4206e373234d408"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "YelpApp.SearchViewController.searchTypeControl.modify : Swift.Optional&lt;__C.UISegmentedControl&gt;"
+                  moduleName = "YelpApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bell/Documents/Swift%20Training/YelpApp/YelpApp/View/SearchViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "1C65BA7B-0A1D-4DEB-A63C-0114A718C295 - 9e890f41aa863802"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "YelpApp.SearchViewController.searchTypeControl.modify : Swift.Optional&lt;__C.UISegmentedControl&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "YelpApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bell/Documents/Swift%20Training/YelpApp/YelpApp/View/SearchViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "26">
+               </Location>
+               <Location
+                  uuid = "1C65BA7B-0A1D-4DEB-A63C-0114A718C295 - 87496b3d45088507"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "YelpApp.SearchViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; YelpApp.SearchViewController"
+                  moduleName = "YelpApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bell/Documents/Swift%20Training/YelpApp/YelpApp/View/SearchViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "237">
+               </Location>
+               <Location
+                  uuid = "1C65BA7B-0A1D-4DEB-A63C-0114A718C295 - 8b6df33f455930c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "YelpApp.SearchViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;YelpApp.SearchViewController&gt;"
+                  moduleName = "YelpApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bell/Documents/Swift%20Training/YelpApp/YelpApp/View/SearchViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "194">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB8548DB-E6FE-49A8-8412-EC84D880E384"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YelpApp/View/SearchViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "onSearchClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
