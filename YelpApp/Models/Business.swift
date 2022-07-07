@@ -9,10 +9,10 @@ import Foundation
 
 struct Business: Decodable {
     var id, alias, name: String
-    var imageURL: String?
-    var isClaimed, isClosed: Bool?
+    var image_url: String?
+    var is_claimed, is_closed: Bool?
     var url: String?
-    var phone, displayPhone: String?
+    var phone, display_phone: String?
     var reviewCount: Int?
     var categories: [Category]?
     var rating: Double?
@@ -22,7 +22,7 @@ struct Business: Decodable {
     var price: String?
     var hours: [Hour]?
 //    var transactions: [Any]
-    var specialHours: [SpecialHour]?
+    var special_hours: [SpecialHour]?
     var distance: Double?
 
     

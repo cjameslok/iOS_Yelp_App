@@ -9,7 +9,7 @@ import Foundation
 
 struct Location: Decodable {
     var address1, address2, address3, city: String?
-    var zipCode, country, state: String?
-    var displayAddress: [String]?
-    var crossStreets: String?
+    var zip_code, country, state: String?
+    var display_address: [String]?
+    var cross_streets: String?
 }

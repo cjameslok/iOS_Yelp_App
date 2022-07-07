@@ -14,6 +14,7 @@ class BusinessDetailsCell: UITableViewCell {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var RatingView: UIView!
     @IBOutlet var StarImageCollection: [UIImageView]!
+    @IBOutlet weak var distanceLabel: UILabel!
     
 //    var business: Business
     var rating: Double?

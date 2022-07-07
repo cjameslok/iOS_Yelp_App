@@ -9,7 +9,7 @@ import Foundation
 
 struct SpecialHour: Decodable {
     var date: String
-    var isClosed: Bool?
+    var is_closed: Bool?
     var start, end: String
     var isOvernight: Bool
 

@@ -8,7 +8,7 @@
 import Foundation
 
 struct Open: Decodable {
-    var isOvernight: Bool
+    var is_overnight: Bool
     var start, end: String
     var day: Int
 

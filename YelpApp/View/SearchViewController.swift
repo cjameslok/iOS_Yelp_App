@@ -198,7 +198,13 @@ extension SearchViewController {
         }
         else {
             cell.ratingLabel.text = "N/A"
-            
+        }
+        
+        if let distance = businesses[indexPath.row].distance {
+            cell.distanceLabel.text = String(round(distance)) + " m"
+        }
+        else {
+            cell.ratingLabel.text = ""
         }
 
         return cell

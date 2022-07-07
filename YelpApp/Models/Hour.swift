@@ -8,8 +8,8 @@
 import Foundation
 
 struct Hour: Decodable {
-    var hourOpen: [Open]
-    var hoursType: String
-    var isOpenNow: Bool
+    var hour_open: [Open]
+    var hours_type: String
+    var is_open_now: Bool
 
 }
