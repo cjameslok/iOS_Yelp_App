@@ -87,7 +87,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgc-9l-amU">
-                                <rect key="frame" x="20" y="246" width="374" height="27"/>
+                                <rect key="frame" x="364" y="246" width="30" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <menu key="menu" id="hXW-39-feJ">
                                     <children>
@@ -110,6 +110,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vtz-yY-BHF" firstAttribute="top" secondItem="HuT-Lg-Mmr" secondAttribute="top" id="0pC-gG-lcl"/>
+                            <constraint firstItem="Tgc-9l-amU" firstAttribute="trailing" secondItem="acj-AW-xHR" secondAttribute="trailing" id="32z-gk-IcA"/>
                             <constraint firstItem="Tgc-9l-amU" firstAttribute="top" secondItem="6bp-JR-qnT" secondAttribute="bottom" id="3Jh-Bu-t8n"/>
                             <constraint firstItem="6bp-JR-qnT" firstAttribute="trailing" secondItem="HuT-Lg-Mmr" secondAttribute="trailing" constant="-20" id="4Oa-GC-dhP"/>
                             <constraint firstItem="acj-AW-xHR" firstAttribute="centerX" secondItem="gRn-NN-1zP" secondAttribute="centerX" id="Au3-9C-eAk"/>
@@ -120,10 +121,8 @@
                             <constraint firstItem="6bp-JR-qnT" firstAttribute="top" secondItem="vtz-yY-BHF" secondAttribute="bottom" constant="10" id="YJ8-Wk-Lm1"/>
                             <constraint firstItem="acj-AW-xHR" firstAttribute="top" secondItem="Tgc-9l-amU" secondAttribute="bottom" id="amB-x8-w1A"/>
                             <constraint firstItem="acj-AW-xHR" firstAttribute="leading" secondItem="HuT-Lg-Mmr" secondAttribute="leading" constant="20" id="dia-Wt-loy"/>
-                            <constraint firstItem="Tgc-9l-amU" firstAttribute="centerX" secondItem="gRn-NN-1zP" secondAttribute="centerX" id="dwe-q4-y2I"/>
                             <constraint firstItem="HuT-Lg-Mmr" firstAttribute="trailing" secondItem="vtz-yY-BHF" secondAttribute="trailing" id="eVx-lR-pGk"/>
                             <constraint firstItem="vtz-yY-BHF" firstAttribute="centerX" secondItem="gRn-NN-1zP" secondAttribute="centerX" id="jg4-GW-NFe"/>
-                            <constraint firstItem="Tgc-9l-amU" firstAttribute="leading" secondItem="HuT-Lg-Mmr" secondAttribute="leading" constant="20" id="kzh-FH-A2A"/>
                             <constraint firstItem="vtz-yY-BHF" firstAttribute="leading" secondItem="HuT-Lg-Mmr" secondAttribute="leading" id="svP-51-Wp2"/>
                             <constraint firstItem="HuT-Lg-Mmr" firstAttribute="trailing" secondItem="Tgc-9l-amU" secondAttribute="trailing" constant="20" id="yOa-8g-xpy"/>
                             <constraint firstItem="6bp-JR-qnT" firstAttribute="centerX" secondItem="gRn-NN-1zP" secondAttribute="centerX" id="yQV-tr-Q9k"/>

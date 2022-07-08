@@ -7,5 +7,6 @@ target 'YelpApp' do
 
   # Pods for YelpApp
   pod 'Alamofire'
+  pod 'ImageSlideshow', '~> 1.9.0'
 
 end

@@ -8,11 +8,6 @@
 import Foundation
 import Alamofire
 
-//protocol StationsViewPresenter {
-//    init(view: StationsView)
-//    func viewDidLoad()
-//}
-
 class SearchViewPresenter {
     
     // TODO update token
@@ -99,14 +94,4 @@ class SearchViewPresenter {
     
 
     }
-        
-
-
-        
-//        let stations: [Station]? = self.stations?
-//            .map { $0 }
-//        view?.onStationsRetrieval(stations: stations ?? [])
-//        view?.onStationsRetrieval(stations: [])
-
-
 

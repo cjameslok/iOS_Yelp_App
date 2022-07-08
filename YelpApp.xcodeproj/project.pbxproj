@@ -25,10 +25,11 @@
 		286BB1A7286D4FDD006F4BE3 /* SearchViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286BB1A6286D4FDD006F4BE3 /* SearchViewPresenter.swift */; };
 		28E36254286DF0D9006B6D5F /* BusinessDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E36253286DF0D9006B6D5F /* BusinessDetailsCell.swift */; };
 		28E36256286DF0EC006B6D5F /* BusinessDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E36255286DF0EC006B6D5F /* BusinessDetailsCell.xib */; };
-		28E36259286E326C006B6D5F /* BusinessDetailsViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E36257286E326C006B6D5F /* BusinessDetailsViewViewController.swift */; };
-		28E3625A286E326C006B6D5F /* BusinessDetailsViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E36258286E326C006B6D5F /* BusinessDetailsViewViewController.xib */; };
-		28E362612870BA8B006B6D5F /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E3625F2870BA8B006B6D5F /* ResultsTableViewController.swift */; };
-		28E362622870BA8B006B6D5F /* ResultsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E362602870BA8B006B6D5F /* ResultsTableViewController.xib */; };
+		28E3626428771B93006B6D5F /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E3626328771B93006B6D5F /* StorageType.swift */; };
+		28E3626828776FE7006B6D5F /* BusinessDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E3626728776FE7006B6D5F /* BusinessDetailsPresenter.swift */; };
+		28E3626B28777005006B6D5F /* BusinessDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E3626928777005006B6D5F /* BusinessDetailsViewController.xib */; };
+		28E3626C28777005006B6D5F /* BusinessDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E3626A28777005006B6D5F /* BusinessDetailsViewController.swift */; };
+		28E3626E28786228006B6D5F /* BuisinessMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E3626D28786228006B6D5F /* BuisinessMapAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,10 +53,11 @@
 		286BB1A6286D4FDD006F4BE3 /* SearchViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewPresenter.swift; sourceTree = "<group>"; };
 		28E36253286DF0D9006B6D5F /* BusinessDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailsCell.swift; sourceTree = "<group>"; };
 		28E36255286DF0EC006B6D5F /* BusinessDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusinessDetailsCell.xib; sourceTree = "<group>"; };
-		28E36257286E326C006B6D5F /* BusinessDetailsViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailsViewViewController.swift; sourceTree = "<group>"; };
-		28E36258286E326C006B6D5F /* BusinessDetailsViewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusinessDetailsViewViewController.xib; sourceTree = "<group>"; };
-		28E3625F2870BA8B006B6D5F /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
-		28E362602870BA8B006B6D5F /* ResultsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsTableViewController.xib; sourceTree = "<group>"; };
+		28E3626328771B93006B6D5F /* StorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageType.swift; sourceTree = "<group>"; };
+		28E3626728776FE7006B6D5F /* BusinessDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailsPresenter.swift; sourceTree = "<group>"; };
+		28E3626928777005006B6D5F /* BusinessDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessDetailsViewController.xib; sourceTree = "<group>"; };
+		28E3626A28777005006B6D5F /* BusinessDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessDetailsViewController.swift; sourceTree = "<group>"; };
+		28E3626D28786228006B6D5F /* BuisinessMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuisinessMapAnnotation.swift; sourceTree = "<group>"; };
 		542C5646EFBF517371C57446 /* Pods-YelpApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YelpApp.debug.xcconfig"; path = "Target Support Files/Pods-YelpApp/Pods-YelpApp.debug.xcconfig"; sourceTree = "<group>"; };
 		AB881158799D812EDD642CB0 /* Pods-YelpApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YelpApp.release.xcconfig"; path = "Target Support Files/Pods-YelpApp/Pods-YelpApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +119,8 @@
 				286BB192286CF43E006F4BE3 /* Hour.swift */,
 				286BB196286CF43E006F4BE3 /* Location.swift */,
 				286BB194286CF43E006F4BE3 /* Open.swift */,
+				28E3626328771B93006B6D5F /* StorageType.swift */,
+				28E3626D28786228006B6D5F /* BuisinessMapAnnotation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -125,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				286BB1A6286D4FDD006F4BE3 /* SearchViewPresenter.swift */,
+				28E3626728776FE7006B6D5F /* BusinessDetailsPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -132,13 +137,11 @@
 		28446F44286CC4FC003C876B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				28E3626A28777005006B6D5F /* BusinessDetailsViewController.swift */,
+				28E3626928777005006B6D5F /* BusinessDetailsViewController.xib */,
 				28446F4E286CD4B2003C876B /* SearchViewController.swift */,
 				28E36253286DF0D9006B6D5F /* BusinessDetailsCell.swift */,
 				28E36255286DF0EC006B6D5F /* BusinessDetailsCell.xib */,
-				28E36257286E326C006B6D5F /* BusinessDetailsViewViewController.swift */,
-				28E36258286E326C006B6D5F /* BusinessDetailsViewViewController.xib */,
-				28E3625F2870BA8B006B6D5F /* ResultsTableViewController.swift */,
-				28E362602870BA8B006B6D5F /* ResultsTableViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -220,11 +223,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28E362622870BA8B006B6D5F /* ResultsTableViewController.xib in Resources */,
 				28446F2B286CC30E003C876B /* LaunchScreen.storyboard in Resources */,
+				28E3626B28777005006B6D5F /* BusinessDetailsViewController.xib in Resources */,
 				28446F28286CC30E003C876B /* Assets.xcassets in Resources */,
 				28446F26286CC30C003C876B /* Main.storyboard in Resources */,
-				28E3625A286E326C006B6D5F /* BusinessDetailsViewViewController.xib in Resources */,
 				28E36256286DF0EC006B6D5F /* BusinessDetailsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,8 +281,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				28446F23286CC30C003C876B /* ViewController.swift in Sources */,
-				28E362612870BA8B006B6D5F /* ResultsTableViewController.swift in Sources */,
-				28E36259286E326C006B6D5F /* BusinessDetailsViewViewController.swift in Sources */,
+				28E3626428771B93006B6D5F /* StorageType.swift in Sources */,
+				28E3626C28777005006B6D5F /* BusinessDetailsViewController.swift in Sources */,
 				286BB1A3286CF4A9006F4BE3 /* SpecialHour.swift in Sources */,
 				28446F1F286CC30C003C876B /* AppDelegate.swift in Sources */,
 				286BB199286CF43E006F4BE3 /* Hour.swift in Sources */,
@@ -289,7 +291,9 @@
 				286BB19A286CF43E006F4BE3 /* Business.swift in Sources */,
 				286BB19F286CF43E006F4BE3 /* Coordinates.swift in Sources */,
 				286BB19B286CF43E006F4BE3 /* Open.swift in Sources */,
+				28E3626828776FE7006B6D5F /* BusinessDetailsPresenter.swift in Sources */,
 				286BB19E286CF43E006F4BE3 /* BusinessResults.swift in Sources */,
+				28E3626E28786228006B6D5F /* BuisinessMapAnnotation.swift in Sources */,
 				286BB1A7286D4FDD006F4BE3 /* SearchViewPresenter.swift in Sources */,
 				286BB19D286CF43E006F4BE3 /* Location.swift in Sources */,
 				286BB19C286CF43E006F4BE3 /* Category.swift in Sources */,

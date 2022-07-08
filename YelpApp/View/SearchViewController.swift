@@ -21,18 +21,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var termTextField: UITextField!
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var locationContainer: UIView!
-    
     @IBOutlet weak var sortButton: UIButton!
     @IBOutlet weak var distanceSortingSelector: UICommand!
     @IBOutlet weak var ratingSortingSelector: UICommand!
-
     @IBOutlet weak var searchButton: UIButton!
     
     var presenter: SearchViewPresenter!
     var businesses: [Business] = []
     var selectedIndex: IndexPath?
-    
-    var safeArea: UILayoutGuide!
     let locationManager = CLLocationManager()
     var isLocationMode = false
 
@@ -47,28 +43,21 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNavBar()
+        setUpTableView()
 
-        
-        let presenter = SearchViewPresenter(view: self)
-        self.presenter = presenter
-        presenter.viewDidLoad()
-        
-        safeArea = view.layoutMarginsGuide
+        self.presenter = SearchViewPresenter(view: self)
+        self.presenter.viewDidLoad()
+    }
+
+    func setupNavBar() {
+        navigationItem.title = "Search Reviews"
+    }
+    
+    func setUpTableView() {
         resultsTableView.dataSource = self
         resultsTableView.delegate = self
         resultsTableView.register(UINib(nibName: "BusinessDetailsCell", bundle: nil), forCellReuseIdentifier: "BusinessDetailsCell")
-        
-        
-
-    }
-    
-
-    
-    func setupNavBar() {
-        navigationItem.title = "Search Reviews"
-        
     }
     
     func setupLocationManager() {
@@ -120,8 +109,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             presenter.retrieveBusinesses(location: location, term: term)
         }
         
-        
-        
     }
 
     
@@ -146,9 +133,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    
-    
-    
 }
 
 extension SearchViewController: CLLocationManagerDelegate {
@@ -171,14 +155,8 @@ extension SearchViewController: SearchView {
 
 extension SearchViewController {
     
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-//        cell.textLabel?.text = businesses[indexPath.row].name
-//        return cell
-//    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(BusinessDetailsViewViewController(business: businesses[indexPath.row] ), animated: true)    }
+        self.navigationController?.pushViewController(BusinessDetailsViewController(business: businesses[indexPath.row] ), animated: true)    }
         
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

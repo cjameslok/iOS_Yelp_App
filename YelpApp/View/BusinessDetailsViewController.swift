@@ -1,0 +1,263 @@
+//
+//  BusinessDetailsViewViewController.swift
+//  YelpApp
+//
+//  Created by Bell on 2022-06-30.
+//
+
+import UIKit
+import MapKit
+
+class BusinessDetailsViewController: UIViewController, UINavigationControllerDelegate {
+    
+    var business: Business?
+    var displayImages: [UIImage] = []
+    var displayImageIndex: Int = 0
+    weak var selectedImage: UIImage?
+    var presenter: BusinessDetailsPresenter!
+    
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var address1Label: UILabel!
+    @IBOutlet weak var address2Label: UILabel!
+    @IBOutlet weak var address3Label: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
+    
+    
+    init(business: Business) {
+        super.init(nibName: nil, bundle: nil)
+        self.business = business
+        let presenter = BusinessDetailsPresenter(view: self)
+        self.presenter = presenter
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupNavBar()
+        resetLabels()
+        setupInfo()
+        setUpMap()
+        
+    }
+    
+    func setupNavBar() {
+        navigationItem.title = business?.name
+
+        var menuItems: [UIAction] {
+            return [
+                UIAction(title: "Open camera roll", image: UIImage(systemName: "photo"))
+                {(_) in self.onCameraButtonClick()},
+                UIAction(title: "Take a picture", image: UIImage(systemName: "camera"))
+                {(_) in self.onCameraButtonClick()}
+            ]
+        }
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: nil, image: UIImage(systemName: "plus"), primaryAction: nil, menu: UIMenu(title: "", image: nil, identifier: nil, options: [], children: menuItems))
+    }
+    
+    func setupInfo() {
+        infoView.layer.shadowColor = UIColor.black.cgColor
+        infoView.layer.shadowOpacity = 0.7
+        infoView.layer.shadowOffset = .zero
+        infoView.layer.shadowRadius = 10
+        infoView.layer.cornerRadius = 10
+        
+        
+        if let displayImageUrl = business!.image_url {
+            DispatchQueue.global().async {
+                if let data = try? Data( contentsOf: URL(string: displayImageUrl)!)
+                  {
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self.displayImages.append(image)
+                            self.displayImages.append(UIImage(imageLiteralResourceName: "sample-food"))
+                        }
+                    }
+                  }
+               }
+        }
+        
+                                       
+                                       
+        
+        let count: Int = business!.location!.display_address!.count
+        if count > 0 {
+            if let a1 = business!.location?.display_address?[0] {
+                address1Label.text = a1
+            } else {
+                address1Label.text = ""
+            }
+            if count >= 2 {
+                
+                if let a2 = business!.location?.display_address?[1] {
+                    address2Label.text = a2
+                } else {
+                    address2Label.text = ""
+                }
+                
+                if count == 3 {
+                    if business!.location?.display_address?.count == 3, let a3 = business!.location?.display_address?[2] {
+                        address3Label.text = a3
+                    } else {
+                        address3Label.text = ""
+                    }
+                }
+            }
+        }
+        
+        if let p = business!.display_phone {
+            phoneLabel.text = p
+        } else {
+            phoneLabel.text = ""
+            return
+        }
+        
+    }
+    
+    private func setUpMap() {
+        mapView.delegate = self
+        let annotation = BusinessMapAnnotation(business: self.business)
+        mapView.centerToLocation(CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude))
+        mapView.setVisibleMapRect(self.mapView.visibleMapRect, edgePadding: UIEdgeInsets(top: 200.0, left: 0.0, bottom: 0.0, right: 0.0), animated: true)
+        mapView.addAnnotation(annotation)
+    }
+    
+    private func resetLabels() {
+        phoneLabel.text = ""
+        address1Label.text = ""
+        address2Label.text = ""
+        address3Label.text = ""
+    }
+    
+    private func onCameraButtonClick(){
+        print("clicked")
+        openPhotoLibraryButton()
+        //        guard let image = selectedImage else {return}
+        //        presenter.store(image: image, key: "annotation", storageType: .fileSystem)
+        //
+    }
+    
+}
+
+extension BusinessDetailsViewController: UIImagePickerControllerDelegate {
+    
+    func openPhotoLibraryButton() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] as! UIImage
+        self.selectedImage = image
+        presenter.store(image: image, key: "annotation", storageType: .fileSystem)
+        dismiss(animated:true, completion: nil)
+    }
+    
+}
+
+extension BusinessDetailsViewController: MKMapViewDelegate {
+    
+    func mapView( _ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        guard let annotation = annotation as? BusinessMapAnnotation else {
+            return nil
+        }
+        
+        let identifier = "business"
+        var view: MKMarkerAnnotationView
+        
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            view = MKMarkerAnnotationView(
+                annotation: annotation,
+                reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            
+        }
+        return view
+    }
+    
+    
+
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if !displayImages.isEmpty {
+//            view.detailCalloutAccessoryView = UIImageView(image: presenter.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
+            
+            view.detailCalloutAccessoryView = UIImageView(image: presenter.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
+        
+            let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(_:view:)))
+                                                     let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(_:view:)))
+                
+            leftSwipe.direction = .left
+            rightSwipe.direction = .right
+
+            view.addGestureRecognizer(leftSwipe)
+            view.addGestureRecognizer(rightSwipe)
+        }
+    }
+    
+    @IBAction func swipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer, view: MKAnnotationView) {
+        if gestureRecognizer.state == .ended {
+            switch gestureRecognizer.direction {
+            case .left:
+                if displayImages.count == 1 {
+                    return
+                }
+                else if displayImageIndex < displayImages.count-1 {
+                    displayImageIndex += 1
+                } else if displayImageIndex == displayImages.count-1 {
+                    displayImageIndex = 0
+                }
+            case .right:
+                if displayImages.count == 1 {
+                    return
+                }
+                else if displayImageIndex == 0 {
+                    displayImageIndex = displayImages.count-1
+                }
+                else if displayImageIndex <= displayImages.count-1 {
+                    displayImageIndex -= 1
+                }
+            default:
+                return
+            }
+            
+            print("swipe")
+            view.detailCalloutAccessoryView = UIImageView(image: presenter.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
+        }
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl){
+        
+        print("callout pressed")
+        print(control.self)
+    }
+}
+
+
+private extension MKMapView{
+
+    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 1000) {
+        let coordinateRegion = MKCoordinateRegion(
+            center: location.coordinate,
+            latitudinalMeters: regionRadius,
+            longitudinalMeters: regionRadius)
+        setRegion(coordinateRegion, animated: true)
+
+    }
+    
+}
