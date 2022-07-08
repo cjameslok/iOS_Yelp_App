@@ -42,6 +42,7 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
         resetLabels()
         setupInfo()
         setUpMap()
+        retrieveExistingImages()
         
     }
     
@@ -134,12 +135,22 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
         address3Label.text = ""
     }
     
+    private func retrieveExistingImages() {
+        let images = presenter.retrieveAllImages(folderName: business!.alias)
+        if !images.isEmpty{
+            displayImages.append(contentsOf: images)
+        }
+        
+    }
+    
+    
+    
     private func onCameraButtonClick(){
         print("clicked")
         openPhotoLibraryButton()
-        //        guard let image = selectedImage else {return}
-        //        presenter.store(image: image, key: "annotation", storageType: .fileSystem)
-        //
+        guard let image = selectedImage else {return}
+        presenter.store(image: image, key: business!.alias, storageType: .fileSystem)
+
     }
     
 }
@@ -159,7 +170,8 @@ extension BusinessDetailsViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.editedImage] as! UIImage
         self.selectedImage = image
-        presenter.store(image: image, key: "annotation", storageType: .fileSystem)
+        presenter.store(image: image, key: business!.alias, storageType: .fileSystem)
+        displayImages.append(image)
         dismiss(animated:true, completion: nil)
     }
     

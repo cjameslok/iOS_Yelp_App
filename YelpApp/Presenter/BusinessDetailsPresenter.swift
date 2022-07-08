@@ -77,6 +77,36 @@ class BusinessDetailsPresenter {
         }
         return nil
     }
+    func retrieveAllImages(folderName: String) -> [UIImage] {
+
+        var images: [UIImage] = []
+        let url = folderPath(folderName)!
+        let fileManager = FileManager.default
+
+//        let properties = [NSURLLocalizedNameKey,
+//                          NSURLCreationDateKey, NSURLLocalizedTypeDescriptionKey]
+
+        do {
+            let imageURLs = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options:.skipsHiddenFiles)
+
+            print("image URLs: \(imageURLs)")
+            
+            
+            for imageUrl in imageURLs {
+                images.append(UIImage(data: try! Data(contentsOf: imageUrl))!)
+            }
+            // Create image from URL
+//            var myImage =  UIImage(data: Data(contentsOfURL: imageURLs[0])!)
+
+        } catch let error as NSError {
+            print(error.description)
+        }
+        
+        return images
+    
+
+        
+    }
     
     private func filePath(forKey key: String) -> URL? {
         let fileManager = FileManager.default
@@ -93,8 +123,51 @@ class BusinessDetailsPresenter {
             print(error)
         }
         
+        let businessFolderURL = yelpFolderURL.appendingPathComponent(key)
+        do {
+            try fileManager.createDirectory(
+                at: businessFolderURL,
+                withIntermediateDirectories: true,
+                attributes: nil)
+        }
+        catch {
+            print(error)
+        }
         
-        return yelpFolderURL.appendingPathComponent(key + ".png")
+        let count = try! fileManager.contentsOfDirectory(at: businessFolderURL, includingPropertiesForKeys: nil, options:.skipsHiddenFiles).count
+        
+        
+        return businessFolderURL.appendingPathComponent(key + String(count+1) + ".png")
+    }
+    
+    private func folderPath(_ folderName: String) -> URL? {
+        let fileManager = FileManager.default
+        guard let documentURL = fileManager.urls(for: .documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first else { return nil }
+        
+        let yelpFolderURL = documentURL.appendingPathComponent("YelpFiles")
+        do {
+            try fileManager.createDirectory(
+                at: yelpFolderURL,
+                withIntermediateDirectories: true,
+                attributes: nil)
+        }
+        catch {
+            print(error)
+        }
+        
+        let businessFolderURL = yelpFolderURL.appendingPathComponent(folderName)
+        do {
+            try fileManager.createDirectory(
+                at: businessFolderURL,
+                withIntermediateDirectories: true,
+                attributes: nil)
+        }
+        catch {
+            print(error)
+        }
+        
+        
+        return businessFolderURL
     }
     
     
