@@ -14,6 +14,7 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
     var displayImages: [UIImage] = []
     var displayImageIndex: Int = 0
     weak var selectedImage: UIImage?
+    var annotationView: MKAnnotationView?
     var presenter: BusinessDetailsPresenter!
     
     @IBOutlet weak var mapView: MKMapView!
@@ -46,7 +47,7 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
     
     func setupNavBar() {
         navigationItem.title = business?.name
-
+        
         var menuItems: [UIAction] {
             return [
                 UIAction(title: "Open camera roll", image: UIImage(systemName: "photo"))
@@ -55,7 +56,7 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
                 {(_) in self.onCameraButtonClick()}
             ]
         }
-
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: nil, image: UIImage(systemName: "plus"), primaryAction: nil, menu: UIMenu(title: "", image: nil, identifier: nil, options: [], children: menuItems))
     }
     
@@ -70,19 +71,19 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
         if let displayImageUrl = business!.image_url {
             DispatchQueue.global().async {
                 if let data = try? Data( contentsOf: URL(string: displayImageUrl)!)
-                  {
+                {
                     if let image = UIImage(data: data) {
                         DispatchQueue.main.async {
                             self.displayImages.append(image)
                             self.displayImages.append(UIImage(imageLiteralResourceName: "sample-food"))
                         }
                     }
-                  }
-               }
+                }
+            }
         }
         
-                                       
-                                       
+        
+        
         
         let count: Int = business!.location!.display_address!.count
         if count > 0 {
@@ -190,26 +191,28 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
     }
     
     
-
+    
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if !displayImages.isEmpty {
-//            view.detailCalloutAccessoryView = UIImageView(image: presenter.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
-            
+            //            view.detailCalloutAccessoryView = UIImageView(image: presenter.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
+//            view.rightCalloutAccessoryView = (UIButton(type: .detailDisclosure))
             view.detailCalloutAccessoryView = UIImageView(image: presenter.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
-        
-            let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(_:view:)))
-                                                     let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(_:view:)))
-                
+            
+            self.annotationView = view
+            
+            let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(_:_:)))
+            let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(_:_:)))
+            
             leftSwipe.direction = .left
             rightSwipe.direction = .right
-
+            
             view.addGestureRecognizer(leftSwipe)
             view.addGestureRecognizer(rightSwipe)
         }
     }
     
-    @IBAction func swipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer, view: MKAnnotationView) {
+    @IBAction func swipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer, _ view: MKAnnotationView) {
         if gestureRecognizer.state == .ended {
             switch gestureRecognizer.direction {
             case .left:
@@ -236,7 +239,7 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
             }
             
             print("swipe")
-            view.detailCalloutAccessoryView = UIImageView(image: presenter.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
+            self.annotationView?.detailCalloutAccessoryView = UIImageView(image: presenter.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
         }
         
     }
@@ -244,20 +247,29 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl){
         
         print("callout pressed")
-        print(control.self)
+//        if displayImages.count == 1 {
+//            return
+//        }
+//        else if displayImageIndex < displayImages.count-1 {
+//            displayImageIndex += 1
+//        } else if displayImageIndex == displayImages.count-1 {
+//            displayImageIndex = 0
+//        }
+//        view.detailCalloutAccessoryView = UIImageView(image: presenter.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
     }
 }
 
 
 private extension MKMapView{
-
+    
     func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 1000) {
         let coordinateRegion = MKCoordinateRegion(
             center: location.coordinate,
             latitudinalMeters: regionRadius,
             longitudinalMeters: regionRadius)
         setRegion(coordinateRegion, animated: true)
-
+        
     }
     
 }
+
