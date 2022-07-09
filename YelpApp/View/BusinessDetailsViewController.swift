@@ -15,6 +15,7 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
     var displayImageIndex: Int = 0
     weak var selectedImage: UIImage?
     var annotationView: MKAnnotationView?
+    var annotation: BusinessMapAnnotation?
     var presenter: BusinessDetailsPresenter!
     
     @IBOutlet weak var mapView: MKMapView!
@@ -126,6 +127,8 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
         mapView.centerToLocation(CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude))
         mapView.setVisibleMapRect(self.mapView.visibleMapRect, edgePadding: UIEdgeInsets(top: 200.0, left: 0.0, bottom: 0.0, right: 0.0), animated: true)
         mapView.addAnnotation(annotation)
+        self.annotation = annotation
+        
     }
     
     private func resetLabels() {
@@ -143,7 +146,16 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
         
     }
     
+    @IBAction func onCarButtonClick(_ sender: Any) {
+        guard let a = self.annotation else { return }
+        let launchOptions = [
+            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving
+          ]
+        a.mapItem?.openInMaps(launchOptions: launchOptions)
+    }
     
+    @IBAction func onPhoneButtonClick(_ sender: Any) {
+    }
     
     private func onCameraButtonClick(){
         print("clicked")
@@ -199,6 +211,7 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
             view.calloutOffset = CGPoint(x: -5, y: 5)
             
         }
+
         return view
     }
     

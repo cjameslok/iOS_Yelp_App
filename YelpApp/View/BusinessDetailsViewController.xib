@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,59 +32,101 @@
                     <rect key="frame" x="20" y="69" width="374" height="116.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8H-LN-Fli">
-                            <rect key="frame" x="99.5" y="8" width="70" height="21"/>
+                            <rect key="frame" x="144.5" y="8" width="70" height="21"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djd-wn-i1H">
-                            <rect key="frame" x="99.5" y="34" width="72.5" height="21"/>
+                            <rect key="frame" x="144.5" y="34" width="72.5" height="21"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WwX-Jc-gai">
-                            <rect key="frame" x="99.5" y="60" width="73" height="21"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8iU-uV-Z0v">
-                            <rect key="frame" x="8" y="86" width="53" height="21"/>
+                            <rect key="frame" x="144.5" y="60" width="73" height="21"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="754" text="Phone number" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhA-Cb-nzY">
-                            <rect key="frame" x="99.5" y="86" width="266.5" height="20.5"/>
+                            <rect key="frame" x="144.5" y="86" width="221.5" height="20.5"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yF1-xK-h74">
-                            <rect key="frame" x="8" y="8" width="71.5" height="21"/>
+                            <rect key="frame" x="53" y="8" width="71.5" height="21"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsq-8V-gpg">
+                            <rect key="frame" x="8" y="8" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="NCR-ZQ-oCX"/>
+                                <constraint firstAttribute="width" constant="30" id="OzK-0n-0lb"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled" title="">
+                                <backgroundConfiguration key="background" cornerRadius="20" imageContentMode="center">
+                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                    <imageReference key="image" image="car.fill" catalog="system" symbolScale="medium"/>
+                                    <color key="strokeColor" systemColor="linkColor"/>
+                                </backgroundConfiguration>
+                                <color key="baseBackgroundColor" systemColor="labelColor"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="onCarButtonClick:" destination="-1" eventType="touchUpInside" id="7Wr-6R-gK2"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8iU-uV-Z0v">
+                            <rect key="frame" x="53" y="86" width="53" height="21"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i2J-bO-YD7">
+                            <rect key="frame" x="8" y="81.5" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="1V6-ph-FLw"/>
+                                <constraint firstAttribute="width" constant="30" id="YbF-Wm-P8V"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled" title="">
+                                <backgroundConfiguration key="background" cornerRadius="20" imageContentMode="center">
+                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                    <imageReference key="image" image="phone.fill" catalog="system" symbolScale="medium"/>
+                                    <color key="strokeColor" systemColor="linkColor"/>
+                                </backgroundConfiguration>
+                                <color key="baseBackgroundColor" systemColor="labelColor"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="onPhoneButtonClick:" destination="-1" eventType="touchUpInside" id="Vy0-Iq-0Oy"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="i2J-bO-YD7" firstAttribute="leading" secondItem="79t-ub-z7w" secondAttribute="leadingMargin" id="FWM-10-qMm"/>
                         <constraint firstItem="xhA-Cb-nzY" firstAttribute="top" secondItem="WwX-Jc-gai" secondAttribute="bottom" constant="5" id="Gld-TO-xew"/>
                         <constraint firstItem="WwX-Jc-gai" firstAttribute="top" secondItem="djd-wn-i1H" secondAttribute="bottom" constant="5" id="H8f-zL-hyH"/>
+                        <constraint firstItem="yF1-xK-h74" firstAttribute="top" secondItem="Xsq-8V-gpg" secondAttribute="top" id="J2q-tg-k88"/>
+                        <constraint firstItem="8iU-uV-Z0v" firstAttribute="centerY" secondItem="i2J-bO-YD7" secondAttribute="centerY" id="LSZ-tX-S3O"/>
+                        <constraint firstItem="8iU-uV-Z0v" firstAttribute="leading" secondItem="i2J-bO-YD7" secondAttribute="trailing" constant="15" id="Ltb-sC-RQE"/>
                         <constraint firstItem="djd-wn-i1H" firstAttribute="leading" secondItem="q8H-LN-Fli" secondAttribute="leading" id="M2H-8m-Rr3"/>
                         <constraint firstAttribute="trailing" secondItem="xhA-Cb-nzY" secondAttribute="trailing" constant="8" id="Nxr-HB-HZx"/>
                         <constraint firstItem="q8H-LN-Fli" firstAttribute="leading" secondItem="yF1-xK-h74" secondAttribute="trailing" constant="20" id="S22-Ek-aWU"/>
-                        <constraint firstItem="yF1-xK-h74" firstAttribute="leading" secondItem="79t-ub-z7w" secondAttribute="leadingMargin" id="aLP-T2-w8f"/>
                         <constraint firstItem="yF1-xK-h74" firstAttribute="top" secondItem="q8H-LN-Fli" secondAttribute="top" id="bGf-P8-esJ"/>
+                        <constraint firstItem="Xsq-8V-gpg" firstAttribute="leading" secondItem="79t-ub-z7w" secondAttribute="leadingMargin" id="bKN-iy-jhC"/>
+                        <constraint firstItem="yF1-xK-h74" firstAttribute="leading" secondItem="Xsq-8V-gpg" secondAttribute="trailing" constant="15" id="bcx-aL-4BQ"/>
                         <constraint firstItem="8iU-uV-Z0v" firstAttribute="top" secondItem="WwX-Jc-gai" secondAttribute="bottom" constant="5" id="g3A-ag-NSQ"/>
-                        <constraint firstItem="8iU-uV-Z0v" firstAttribute="leading" secondItem="79t-ub-z7w" secondAttribute="leadingMargin" id="kYy-QS-YqX"/>
                         <constraint firstItem="xhA-Cb-nzY" firstAttribute="leading" secondItem="q8H-LN-Fli" secondAttribute="leading" id="nFa-gC-HjN"/>
                         <constraint firstItem="WwX-Jc-gai" firstAttribute="leading" secondItem="q8H-LN-Fli" secondAttribute="leading" id="qlG-z5-0Iw"/>
                         <constraint firstAttribute="bottom" secondItem="xhA-Cb-nzY" secondAttribute="bottom" constant="10" id="vQ7-SN-jUa"/>
@@ -108,6 +151,17 @@
         </view>
     </objects>
     <resources>
+        <image name="car.fill" catalog="system" width="128" height="93"/>
+        <image name="phone.fill" catalog="system" width="128" height="114"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

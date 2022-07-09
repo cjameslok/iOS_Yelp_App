@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import Contacts
 import MapKit
 
 class BusinessMapAnnotation: NSObject, MKAnnotation {
@@ -15,20 +15,31 @@ class BusinessMapAnnotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
     
     var subtitle: String? {
-      return nil
+        return nil
     }
-
-  init(business: Business?) {
-      self.business = business
-//      self.title = business?.name
-      if let coordinates = business!.coordinates {
-          self.coordinate = CLLocationCoordinate2D(latitude: coordinates.latitude, longitude: coordinates.longitude)
-      } else {
-          self.coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-      }
-      super.init()
     
-  }
+    var mapItem: MKMapItem?
     
-
+    init(business: Business?) {
+        self.business = business
+        //      self.title = business?.name
+        if let coordinates = business!.coordinates {
+            self.coordinate = CLLocationCoordinate2D(latitude: coordinates.latitude, longitude: coordinates.longitude)
+        } else {
+            self.coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+        }
+        
+        let addressDict = [CNPostalAddressStreetKey: business?.name]
+        let placemark = MKPlacemark(
+            coordinate: self.coordinate,
+            addressDictionary: addressDict)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = business?.name
+        self.mapItem = mapItem
+        
+        super.init()
+        
+    }
+    
+    
 }
