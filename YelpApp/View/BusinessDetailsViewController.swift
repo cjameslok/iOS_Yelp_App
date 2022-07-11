@@ -124,8 +124,8 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
     private func setUpMap() {
         mapView.delegate = self
         let annotation = BusinessMapAnnotation(business: self.business)
-        let rect = centerToLocation(CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude))
-        mapView.setVisibleMapRect(rect, edgePadding: UIEdgeInsets(top: 200.0, left: 0.0, bottom: 0.0, right: 0.0), animated: true)
+        mapView.centerToLocation(CLLocationCoordinate2D(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude))
+//        mapView.setVisibleMapRect(rect, edgePadding: UIEdgeInsets(top: 200.0, left: 0.0, bottom: 0.0, right: 0.0), animated: true)
         mapView.addAnnotation(annotation)
         self.annotation = annotation
         
@@ -233,15 +233,8 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
             view.addGestureRecognizer(leftSwipe)
             view.addGestureRecognizer(rightSwipe)
             
-//            mapView.centerToLocation(CLLocation(latitude: self.annotation!.coordinate.latitude, longitude: self.annotation!.coordinate.longitude))
-//
-//            let coordinate = self.annotation!.coordinate
-//            let delta = CLLocationDegrees(0.003)
-//            let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
-//            let region = MKCoordinateRegion(center: coordinate, span: span)
-            let rect = centerToLocation(CLLocation(latitude: self.annotation!.coordinate.latitude, longitude: self.annotation!.coordinate.longitude))
-            let insets = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
-            mapView.setVisibleMapRect(rect, edgePadding: insets, animated: true)
+            mapView.centerToLocation(CLLocationCoordinate2D(latitude: annotation!.coordinate.latitude, longitude: annotation!.coordinate.longitude))
+
             setMapFreeze(true)
             
         }
@@ -298,9 +291,6 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl){
         print("callout pressed")
-
-        
-        
     }
     
     func setMapFreeze(_ isFrozen: Bool){
@@ -310,34 +300,33 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
         mapView.isScrollEnabled = !isFrozen
     }
     
-    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 1000) -> MKMapRect {
-        
-        let coordinateRegion = MKCoordinateRegion(
-            center: location.coordinate,
-            latitudinalMeters: regionRadius,
-            longitudinalMeters: regionRadius)
-//        setRegion(coordinateRegion, animated: true)
-        
-        let topLeft = CLLocationCoordinate2D(latitude: coordinateRegion.center.latitude + (coordinateRegion.span.latitudeDelta/2), longitude: coordinateRegion.center.longitude - (coordinateRegion.span.longitudeDelta/2))
-        let bottomRight = CLLocationCoordinate2D(latitude: coordinateRegion.center.latitude - (coordinateRegion.span.latitudeDelta/2), longitude: coordinateRegion.center.longitude + (coordinateRegion.span.longitudeDelta/2))
+}
 
-          let a = MKMapPoint(topLeft)
-          let b = MKMapPoint(bottomRight)
+
+private extension MKMapView{
+    
+    func centerToLocation(_ location: CLLocationCoordinate2D, regionRadius: CLLocationDistance = 1000) {
         
+        let coordinate =  location
+        let delta = CLLocationDegrees(0.003)
+        let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
+        let region = MKCoordinateRegion(center: coordinate, span: span)
+        // Adjust padding here
+        let insets = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
+
+        let topLeft = CLLocationCoordinate2D(latitude: region.center.latitude + (region.span.latitudeDelta/2), longitude: region.center.longitude - (region.span.longitudeDelta/2))
+        let bottomRight = CLLocationCoordinate2D(latitude: region.center.latitude - (region.span.latitudeDelta/2), longitude: region.center.longitude + (region.span.longitudeDelta/2))
+
+        let a = MKMapPoint(topLeft)
+        let b = MKMapPoint(bottomRight)
 
         let rect = MKMapRect(origin: MKMapPoint(x:min(a.x,b.x), y:min(a.y,b.y)), size: MKMapSize(width: abs(a.x-b.x), height: abs(a.y-b.y)))
         
-        return rect
+        setVisibleMapRect(rect, edgePadding: insets, animated: true)
     
+    }
+
 }
-
-
-//private extension MKMapView{
-//    
-//    
-//
-//        
-//    }
     
-}
+
 
