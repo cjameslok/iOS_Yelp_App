@@ -124,8 +124,8 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
     private func setUpMap() {
         mapView.delegate = self
         let annotation = BusinessMapAnnotation(business: self.business)
-        mapView.centerToLocation(CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude))
-        mapView.setVisibleMapRect(self.mapView.visibleMapRect, edgePadding: UIEdgeInsets(top: 200.0, left: 0.0, bottom: 0.0, right: 0.0), animated: true)
+        let rect = centerToLocation(CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude))
+        mapView.setVisibleMapRect(rect, edgePadding: UIEdgeInsets(top: 200.0, left: 0.0, bottom: 0.0, right: 0.0), animated: true)
         mapView.addAnnotation(annotation)
         self.annotation = annotation
         
@@ -228,14 +228,41 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
             
             let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(_:_:)))
             let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(_:_:)))
-            
             leftSwipe.direction = .left
             rightSwipe.direction = .right
-            
             view.addGestureRecognizer(leftSwipe)
             view.addGestureRecognizer(rightSwipe)
+            
+//            mapView.centerToLocation(CLLocation(latitude: self.annotation!.coordinate.latitude, longitude: self.annotation!.coordinate.longitude))
+//
+//            let coordinate = self.annotation!.coordinate
+//            let delta = CLLocationDegrees(0.003)
+//            let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
+//            let region = MKCoordinateRegion(center: coordinate, span: span)
+            let rect = centerToLocation(CLLocation(latitude: self.annotation!.coordinate.latitude, longitude: self.annotation!.coordinate.longitude))
+            let insets = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
+            mapView.setVisibleMapRect(rect, edgePadding: insets, animated: true)
+            setMapFreeze(true)
+            
         }
     }
+    
+       // Convert CoordinateRegion to MapRect
+      func MKMapRectForCoordinateRegion(region:MKCoordinateRegion) -> MKMapRect {
+        let topLeft = CLLocationCoordinate2D(latitude: region.center.latitude + (region.span.latitudeDelta/2), longitude: region.center.longitude - (region.span.longitudeDelta/2))
+        let bottomRight = CLLocationCoordinate2D(latitude: region.center.latitude - (region.span.latitudeDelta/2), longitude: region.center.longitude + (region.span.longitudeDelta/2))
+
+          let a = MKMapPoint(topLeft)
+          let b = MKMapPoint(bottomRight)
+
+        return MKMapRect(origin: MKMapPoint(x:min(a.x,b.x), y:min(a.y,b.y)), size: MKMapSize(width: abs(a.x-b.x), height: abs(a.y-b.y)))
+      }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        setMapFreeze(false)
+    }
+    
+    
     
     @IBAction func swipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer, _ view: MKAnnotationView) {
         if gestureRecognizer.state == .ended {
@@ -270,31 +297,47 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl){
-        
         print("callout pressed")
-//        if displayImages.count == 1 {
-//            return
-//        }
-//        else if displayImageIndex < displayImages.count-1 {
-//            displayImageIndex += 1
-//        } else if displayImageIndex == displayImages.count-1 {
-//            displayImageIndex = 0
-//        }
-//        view.detailCalloutAccessoryView = UIImageView(image: presenter.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
+
+        
+        
     }
-}
-
-
-private extension MKMapView{
     
-    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 1000) {
+    func setMapFreeze(_ isFrozen: Bool){
+        mapView.isZoomEnabled = !isFrozen
+        mapView.isPitchEnabled = !isFrozen
+        mapView.isRotateEnabled = !isFrozen
+        mapView.isScrollEnabled = !isFrozen
+    }
+    
+    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 1000) -> MKMapRect {
+        
         let coordinateRegion = MKCoordinateRegion(
             center: location.coordinate,
             latitudinalMeters: regionRadius,
             longitudinalMeters: regionRadius)
-        setRegion(coordinateRegion, animated: true)
+//        setRegion(coordinateRegion, animated: true)
         
-    }
+        let topLeft = CLLocationCoordinate2D(latitude: coordinateRegion.center.latitude + (coordinateRegion.span.latitudeDelta/2), longitude: coordinateRegion.center.longitude - (coordinateRegion.span.longitudeDelta/2))
+        let bottomRight = CLLocationCoordinate2D(latitude: coordinateRegion.center.latitude - (coordinateRegion.span.latitudeDelta/2), longitude: coordinateRegion.center.longitude + (coordinateRegion.span.longitudeDelta/2))
+
+          let a = MKMapPoint(topLeft)
+          let b = MKMapPoint(bottomRight)
+        
+
+        let rect = MKMapRect(origin: MKMapPoint(x:min(a.x,b.x), y:min(a.y,b.y)), size: MKMapSize(width: abs(a.x-b.x), height: abs(a.y-b.y)))
+        
+        return rect
+    
+}
+
+
+//private extension MKMapView{
+//    
+//    
+//
+//        
+//    }
     
 }
 
