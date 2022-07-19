@@ -24,7 +24,8 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
     @IBOutlet weak var address2Label: UILabel!
     @IBOutlet weak var address3Label: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
-    
+    @IBOutlet weak var addressButton: UIButton!
+    @IBOutlet weak var phoneButton: UIButton!
     
     init(business: Business) {
         super.init(nibName: nil, bundle: nil)
@@ -69,7 +70,6 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
         infoView.layer.shadowRadius = 10
         infoView.layer.cornerRadius = 10
         
-        
         if let displayImageUrl = business!.image_url {
             DispatchQueue.global().async {
                 if let data = try? Data( contentsOf: URL(string: displayImageUrl)!)
@@ -109,10 +109,12 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
             }
         }
         
-        if let p = business!.display_phone {
+        if let p = business!.display_phone, p != "" {
+            phoneButton.isHidden = false
             phoneLabel.text = p
         } else {
             phoneLabel.text = ""
+            phoneButton.isHidden = true
             return
         }
         
