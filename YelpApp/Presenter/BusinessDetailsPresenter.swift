@@ -7,10 +7,12 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class BusinessDetailsPresenter {
     
     weak var view: BusinessDetailsViewController?
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     init(view: BusinessDetailsViewController) {
         self.view = view
@@ -42,6 +44,34 @@ class BusinessDetailsPresenter {
         return newImage
     }
     
+    func createAlbum(for business: Business) {
+        let alias = business.alias
+        let predicate = NSPredicate(format: "businessId == %@", alias)
+        let request = AlbumEntity.fetchRequest() as NSFetchRequest<AlbumEntity>
+        request.predicate = predicate
+        let result = try! context.fetch(request)
+
+        if result.isEmpty{
+            
+            let album = AlbumEntity(context: context)
+            album.businessId = alias
+            try! context.save()
+        
+            if let displayImageUrl = business.image_url {
+                    if let data = try? Data( contentsOf: URL(string: displayImageUrl)!)
+                    {
+                        if let image = UIImage(data: data) {
+                            DispatchQueue.main.async {
+                                self.store(image: image, key: alias, storageType: .coreData)
+                                self.store(image: UIImage(imageLiteralResourceName: "sample-food"), key: alias, storageType: .coreData)
+                            }
+                        }
+                    }
+            }
+        }
+        
+    }
+    
     func store(image: UIImage, key: String, storageType: StorageType){
         if let pngRepresentation = image.pngData() {
                 switch storageType {
@@ -57,8 +87,33 @@ class BusinessDetailsPresenter {
                 case .userDefaults:
                     UserDefaults.standard.set(pngRepresentation, forKey: key)
                     
+                case .coreData:
+                    let predicate = NSPredicate(format: "businessId == %@", key)
+                    let request = AlbumEntity.fetchRequest() as NSFetchRequest<AlbumEntity>
+                    request.predicate = predicate
+                    let albums = try! context.fetch(request)
+                    var album: AlbumEntity? = nil
+                    
+                    if albums.isEmpty {
+                        album = createAlbum(key)
+                    } else {
+                        album = albums[0]
+                    }
+                    
+                    let image = ImageEntity(context: context)
+                    image.album = album!
+                    image.image = pngRepresentation
+                    try! context.save()
+                    
                 }
             }
+    }
+    
+    func createAlbum(_ albumName: String) -> AlbumEntity {
+        let album = AlbumEntity(context: context)
+        album.businessId = albumName
+        try! context.save()
+        return album
     }
     
     func retrieveImage(key: String, storageType: StorageType) -> UIImage? {
@@ -74,36 +129,57 @@ class BusinessDetailsPresenter {
                let image = UIImage(data: imageData) {
                     return image
                 }
+        case .coreData:
+            return nil
         }
         return nil
     }
-    func retrieveAllImages(folderName: String) -> [UIImage] {
+    
+    func retrieveAllImages(folderName: String, storageType: StorageType) -> [UIImage] {
 
-        var images: [UIImage] = []
-        let url = folderPath(folderName)!
-        let fileManager = FileManager.default
+        switch storageType {
+        case .userDefaults:
+            return []
+        
+        case .fileSystem:
+            var images: [UIImage] = []
+            let url = folderPath(folderName)!
+            let fileManager = FileManager.default
 
-//        let properties = [NSURLLocalizedNameKey,
-//                          NSURLCreationDateKey, NSURLLocalizedTypeDescriptionKey]
+            do {
+                let imageURLs = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options:.skipsHiddenFiles)
 
-        do {
-            let imageURLs = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options:.skipsHiddenFiles)
+                for imageUrl in imageURLs {
+                    images.append(UIImage(data: try! Data(contentsOf: imageUrl))!)
+                }
 
-            print("image URLs: \(imageURLs)")
-            
-            
-            for imageUrl in imageURLs {
-                images.append(UIImage(data: try! Data(contentsOf: imageUrl))!)
+            } catch let error as NSError {
+                print(error.description)
             }
-            // Create image from URL
-//            var myImage =  UIImage(data: Data(contentsOfURL: imageURLs[0])!)
-
-        } catch let error as NSError {
-            print(error.description)
+            
+            return images
+        
+        case .coreData:
+            let predicate = NSPredicate(format: "businessId == %@", folderName)
+            let request = AlbumEntity.fetchRequest() as NSFetchRequest<AlbumEntity>
+            request.predicate = predicate
+            let albums = try! context.fetch(request)
+            
+            
+            guard !albums.isEmpty else { return [UIImage]() }
+            
+            let album = albums[0]
+            var imagesArray = [UIImage]()
+            
+            for imageEntity in album.images! {
+//                let imageData = data.value(forKey: "storedImage") as! Data
+                let image = (imageEntity as! ImageEntity).image
+                imagesArray.append(UIImage(data: image as! Data)!)
+              }
+            return imagesArray
+            
         }
         
-        return images
-    
 
         
     }

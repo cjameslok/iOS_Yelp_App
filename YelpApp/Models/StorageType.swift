@@ -10,4 +10,5 @@ import Foundation
 enum StorageType {
     case userDefaults
     case fileSystem
+    case coreData
 }

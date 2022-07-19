@@ -5,6 +5,7 @@
 //  Created by Bell on 2022-06-29.
 //
 import UIKit
+import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,6 +42,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    // MARK: Core Data
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "YelpAppDataModel")
+        container.loadPersistentStores { description, error in
+            if let error = error {
+                fatalError("Unable to load persistent stores: \(error)")
+            }
+        }
+        return container
+    }()
+    
+    func saveContext() {
+        let context = persistentContainer.viewContext
+        guard context.hasChanges else { return }
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Error: \(error), \(error.userInfo)")
+        }
+    }
+
 
 }
 

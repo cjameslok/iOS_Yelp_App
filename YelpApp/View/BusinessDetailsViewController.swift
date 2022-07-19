@@ -70,19 +70,19 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
         infoView.layer.shadowRadius = 10
         infoView.layer.cornerRadius = 10
         
-        if let displayImageUrl = business!.image_url {
-            DispatchQueue.global().async {
-                if let data = try? Data( contentsOf: URL(string: displayImageUrl)!)
-                {
-                    if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self.displayImages.append(image)
-                            self.displayImages.append(UIImage(imageLiteralResourceName: "sample-food"))
-                        }
-                    }
-                }
-            }
-        }
+//        if let displayImageUrl = business!.image_url {
+//            DispatchQueue.global().async {
+//                if let data = try? Data( contentsOf: URL(string: displayImageUrl)!)
+//                {
+//                    if let image = UIImage(data: data) {
+//                        DispatchQueue.main.async {
+//                            self.displayImages.append(image)
+//                            self.displayImages.append(UIImage(imageLiteralResourceName: "sample-food"))
+//                        }
+//                    }
+//                }
+//            }
+//        }
         
         let count: Int = business!.location!.display_address!.count
         if count > 0 {
@@ -138,7 +138,8 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
     }
     
     private func retrieveExistingImages() {
-        let images = presenter.retrieveAllImages(folderName: business!.alias)
+        presenter.createAlbum(for: business!)
+        let images = presenter.retrieveAllImages(folderName: business!.alias, storageType: .coreData)
         if !images.isEmpty{
             displayImages.append(contentsOf: images)
         }
@@ -160,7 +161,7 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
         print("clicked")
         openPhotoLibraryButton()
         guard let image = selectedImage else {return}
-        presenter.store(image: image, key: business!.alias, storageType: .fileSystem)
+        presenter.store(image: image, key: business!.alias, storageType: .coreData)
         
     }
     
@@ -181,7 +182,7 @@ extension BusinessDetailsViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.editedImage] as! UIImage
         self.selectedImage = image
-        presenter.store(image: image, key: business!.alias, storageType: .fileSystem)
+        presenter.store(image: image, key: business!.alias, storageType: .coreData)
         displayImages.append(image)
         dismiss(animated:true, completion: nil)
     }
