@@ -19,13 +19,11 @@ class SearchViewPresenter {
         self.view = view
     }
     
-    // MARK: - Protocol methods
     func viewDidLoad() {
         print("View notifies the Presenter that it has loaded.")
 //        retrieveItems()
     }
     
-    // MARK: - Private methods
     private func retrieveItems() {
         print("Presenter retrieves station from API")
         

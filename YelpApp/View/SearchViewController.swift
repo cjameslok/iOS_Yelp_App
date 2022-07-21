@@ -14,7 +14,7 @@ protocol SearchView: AnyObject{
     func onBusinessRetrieval(businessList: [Business])
 }
 
-class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SearchViewController: UIViewController, SearchView {
      
     @IBOutlet weak var searchTypeControl: UISegmentedControl!
     @IBOutlet weak var locationTextField: UITextField!
@@ -60,7 +60,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func setupLocationManager() {
-        // Ask for Authorisation from the User.
+        // Ask for Authorisation from the User
         self.locationManager.requestAlwaysAuthorization()
         // For use in foreground
         self.locationManager.requestWhenInUseAuthorization()
@@ -69,6 +69,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+    }
+    
+    func onBusinessRetrieval(businessList: [Business]) {
+        self.businesses = businessList
+        self.resultsTableView.reloadData()
     }
     
     @IBAction func sortTableByDistance(_ sender: Any) {
@@ -95,7 +100,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     
-    
     @IBAction func onSearchClicked(_ sender: Any) {
         sortButton.setTitle("Sort", for: .normal)
         guard let location = locationTextField.text else {return}
@@ -108,6 +112,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             presenter.retrieveBusinesses(location: location, term: term)
         }
         
+        view.endEditing(true)
     }
 
     
@@ -137,22 +142,13 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 extension SearchViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
 //        print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
 }
 
-extension SearchViewController: SearchView {
-    
-    func onBusinessRetrieval(businessList: [Business]) {
-        self.businesses = businessList
-        self.resultsTableView.reloadData()
-    }
-    
-}
-
-extension SearchViewController {
+extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.navigationController?.pushViewController(BusinessDetailsViewController(business: businesses[indexPath.row] ), animated: true)    }

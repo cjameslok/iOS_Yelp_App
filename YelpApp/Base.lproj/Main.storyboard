@@ -44,7 +44,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="acj-AW-xHR">
-                                <rect key="frame" x="20" y="273" width="374" height="589"/>
+                                <rect key="frame" x="0.0" y="273" width="414" height="589"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bp-JR-qnT">
@@ -110,17 +110,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vtz-yY-BHF" firstAttribute="top" secondItem="HuT-Lg-Mmr" secondAttribute="top" id="0pC-gG-lcl"/>
-                            <constraint firstItem="Tgc-9l-amU" firstAttribute="trailing" secondItem="acj-AW-xHR" secondAttribute="trailing" id="32z-gk-IcA"/>
                             <constraint firstItem="Tgc-9l-amU" firstAttribute="top" secondItem="6bp-JR-qnT" secondAttribute="bottom" id="3Jh-Bu-t8n"/>
                             <constraint firstItem="6bp-JR-qnT" firstAttribute="trailing" secondItem="HuT-Lg-Mmr" secondAttribute="trailing" constant="-20" id="4Oa-GC-dhP"/>
+                            <constraint firstItem="acj-AW-xHR" firstAttribute="leading" secondItem="HuT-Lg-Mmr" secondAttribute="leading" id="95f-OL-QMd"/>
                             <constraint firstItem="acj-AW-xHR" firstAttribute="centerX" secondItem="gRn-NN-1zP" secondAttribute="centerX" id="Au3-9C-eAk"/>
-                            <constraint firstItem="HuT-Lg-Mmr" firstAttribute="trailing" secondItem="acj-AW-xHR" secondAttribute="trailing" constant="20" id="IHa-yZ-gzX"/>
                             <constraint firstItem="6bp-JR-qnT" firstAttribute="leading" secondItem="HuT-Lg-Mmr" secondAttribute="leading" constant="20" id="Kpd-fa-JxA"/>
                             <constraint firstItem="6bp-JR-qnT" firstAttribute="centerX" secondItem="gRn-NN-1zP" secondAttribute="centerX" id="PGI-3H-9kK"/>
                             <constraint firstItem="acj-AW-xHR" firstAttribute="bottom" secondItem="HuT-Lg-Mmr" secondAttribute="bottom" id="U3P-c3-3RX"/>
+                            <constraint firstItem="Tgc-9l-amU" firstAttribute="trailing" secondItem="6bp-JR-qnT" secondAttribute="trailing" id="Wat-L3-lVP"/>
+                            <constraint firstItem="acj-AW-xHR" firstAttribute="trailing" secondItem="HuT-Lg-Mmr" secondAttribute="trailing" id="XCq-7D-nxn"/>
                             <constraint firstItem="6bp-JR-qnT" firstAttribute="top" secondItem="vtz-yY-BHF" secondAttribute="bottom" constant="10" id="YJ8-Wk-Lm1"/>
                             <constraint firstItem="acj-AW-xHR" firstAttribute="top" secondItem="Tgc-9l-amU" secondAttribute="bottom" id="amB-x8-w1A"/>
-                            <constraint firstItem="acj-AW-xHR" firstAttribute="leading" secondItem="HuT-Lg-Mmr" secondAttribute="leading" constant="20" id="dia-Wt-loy"/>
                             <constraint firstItem="HuT-Lg-Mmr" firstAttribute="trailing" secondItem="vtz-yY-BHF" secondAttribute="trailing" id="eVx-lR-pGk"/>
                             <constraint firstItem="vtz-yY-BHF" firstAttribute="centerX" secondItem="gRn-NN-1zP" secondAttribute="centerX" id="jg4-GW-NFe"/>
                             <constraint firstItem="vtz-yY-BHF" firstAttribute="leading" secondItem="HuT-Lg-Mmr" secondAttribute="leading" id="svP-51-Wp2"/>

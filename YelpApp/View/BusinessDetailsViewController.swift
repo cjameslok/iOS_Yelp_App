@@ -143,7 +143,7 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
     }
     
     private func onCameraButtonClick(type: UIImagePickerController.SourceType){
-        openImagePicker(type: .photoLibrary)
+        openImagePicker(type: type)
         guard let image = selectedImage else {return}
         presenter.storeImage(image: image, key: business!.alias, storageType: .coreData)
     }
@@ -212,8 +212,8 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
             
             self.annotationView = view
             
-            let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(_:_:)))
-            let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(_:_:)))
+            let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(_:)))
+            let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(_:)))
             leftSwipe.direction = .left
             rightSwipe.direction = .right
             view.addGestureRecognizer(leftSwipe)
@@ -232,7 +232,7 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
     
     
     
-    @IBAction func swipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer, _ view: MKAnnotationView) {
+    @IBAction func swipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer) {
         if gestureRecognizer.state == .ended {
             switch gestureRecognizer.direction {
             case .left:
