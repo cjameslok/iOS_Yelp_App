@@ -8,5 +8,5 @@
 import Foundation
 
 struct Coordinates: Decodable {
-    let latitude, longitude: Double
+    let latitude, longitude: Double?
 }
