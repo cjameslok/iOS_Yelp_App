@@ -10,28 +10,30 @@ import MapKit
 
 class BusinessDetailsViewController: UIViewController, UINavigationControllerDelegate {
     
-    var business: Business?
-    var displayImages: [UIImage] = []
-    var displayImageIndex: Int = 0
-    weak var selectedImage: UIImage?
-    var annotationView: MKAnnotationView?
-    var annotation: BusinessMapAnnotation?
-    var presenter: BusinessDetailsPresenter!
+    private var business: Business?
+    private var displayImages: [UIImage] = []
+    private var displayImageIndex: Int = 0
+    private weak var selectedImage: UIImage?
+    private var annotationView: MKAnnotationView?
+    private var annotation: BusinessMapAnnotation?
+    private var presenter: BusinessDetailsPresenterProtocol!
+    private var imageUtil: ImageResizer?
     
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var infoView: UIView!
-    @IBOutlet weak var address1Label: UILabel!
-    @IBOutlet weak var address2Label: UILabel!
-    @IBOutlet weak var address3Label: UILabel!
-    @IBOutlet weak var phoneLabel: UILabel!
-    @IBOutlet weak var addressButton: UIButton!
-    @IBOutlet weak var phoneButton: UIButton!
+    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var infoView: UIView!
+    @IBOutlet private weak var address1Label: UILabel!
+    @IBOutlet private weak var address2Label: UILabel!
+    @IBOutlet private weak var address3Label: UILabel!
+    @IBOutlet private weak var phoneLabel: UILabel!
+    @IBOutlet private weak var addressButton: UIButton!
+    @IBOutlet private weak var phoneButton: UIButton!
     
-    init(business: Business) {
+    init(business: Business, imageUtil: ImageResizer = ImageUtils()) {
         super.init(nibName: nil, bundle: nil)
         self.business = business
         let presenter = BusinessDetailsPresenter(view: self)
         self.presenter = presenter
+        self.imageUtil = imageUtil
     }
     
     required init?(coder: NSCoder) {
@@ -48,7 +50,7 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
         
     }
     
-    func setupNavBar() {
+    private func setupNavBar() {
         navigationItem.title = business?.name
         
         var menuItems: [UIAction] {
@@ -63,7 +65,7 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: nil, image: UIImage(systemName: "plus"), primaryAction: nil, menu: UIMenu(title: "", image: nil, identifier: nil, options: [], children: menuItems))
     }
     
-    func setupInfo() {
+    private func setupInfo() {
         infoView.layer.shadowColor = UIColor.black.cgColor
         infoView.layer.shadowOpacity = 0.7
         infoView.layer.shadowOffset = .zero
@@ -72,20 +74,20 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
         
         let count: Int = business!.location!.display_address!.count
         if count > 0 {
-            if let a1 = business!.location?.display_address?[0] {
-                address1Label.text = a1
+            if let addrLine1 = business!.location?.display_address?[0] {
+                address1Label.text = addrLine1
             } else {
                 address1Label.text = ""
             }
             if count >= 2 {
-                if let a2 = business!.location?.display_address?[1] {
-                    address2Label.text = a2
+                if let addrLine2 = business!.location?.display_address?[1] {
+                    address2Label.text = addrLine2
                 } else {
                     address2Label.text = ""
                 }
                 if count == 3 {
-                    if business!.location?.display_address?.count == 3, let a3 = business!.location?.display_address?[2] {
-                        address3Label.text = a3
+                    if business!.location?.display_address?.count == 3, let addrLine3 = business!.location?.display_address?[2] {
+                        address3Label.text = addrLine3
                     } else {
                         address3Label.text = ""
                     }
@@ -208,7 +210,7 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
         if !displayImages.isEmpty {
             //            view.detailCalloutAccessoryView = UIImageView(image: ImageUtils.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
             //            view.rightCalloutAccessoryView = (UIButton(type: .detailDisclosure))
-            view.detailCalloutAccessoryView = UIImageView(image: ImageUtils.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
+            view.detailCalloutAccessoryView = UIImageView(image: imageUtil!.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
             
             self.annotationView = view
             
@@ -259,7 +261,7 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
             }
             
             print("swipe")
-            self.annotationView?.detailCalloutAccessoryView = UIImageView(image: ImageUtils.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
+            self.annotationView?.detailCalloutAccessoryView = UIImageView(image: imageUtil!.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
         }
         
     }

@@ -49,17 +49,17 @@ class SearchViewController: UIViewController, SearchView {
         self.presenter.viewDidLoad()
     }
 
-    func setupNavBar() {
+    private func setupNavBar() {
         navigationItem.title = "Search Reviews"
     }
     
-    func setUpTableView() {
+    private func setUpTableView() {
         resultsTableView.dataSource = self
         resultsTableView.delegate = self
         resultsTableView.register(UINib(nibName: "BusinessDetailsCell", bundle: nil), forCellReuseIdentifier: "BusinessDetailsCell")
     }
     
-    func setupLocationManager() {
+    private func setupLocationManager() {
         // Ask for Authorisation from the User
         self.locationManager.requestAlwaysAuthorization()
         // For use in foreground
@@ -121,7 +121,7 @@ class SearchViewController: UIViewController, SearchView {
         print(sender.selectedSegmentIndex)
     }
     
-    fileprivate func toggleSearch() {
+    private func toggleSearch() {
         switch searchTypeControl.selectedSegmentIndex {
         case 0:
             isLocationMode = false

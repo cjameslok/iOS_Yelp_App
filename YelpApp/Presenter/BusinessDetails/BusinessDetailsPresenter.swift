@@ -9,13 +9,21 @@ import Foundation
 import UIKit
 import CoreData
 
-class BusinessDetailsPresenter {
+protocol BusinessDetailsPresenterProtocol {
+    func createAlbum(for business: Business)
+    func storeImage(image: UIImage, key: String, storageType: StorageType)
+    func retrieveAllImages(businessAlias: String, storageType: StorageType) -> [UIImage]
+}
+
+class BusinessDetailsPresenter: BusinessDetailsPresenterProtocol {
     
     weak var view: BusinessDetailsViewController?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var fsUtil: FileSystemUtilsProtocol
     
-    init(view: BusinessDetailsViewController) {
+    init(view: BusinessDetailsViewController, fsUtil: FileSystemUtilsProtocol = FileSystemUtils()) {
         self.view = view
+        self.fsUtil = fsUtil
     }
     
     // Create and populate photo album for business if it doesn't already exist
@@ -54,7 +62,7 @@ class BusinessDetailsPresenter {
         if let pngRepresentation = image.pngData() {
                 switch storageType {
                 case .fileSystem:
-                    if let filePath = FileSystemUtils.filePath(forKey: key) {
+                    if let filePath = fsUtil.filePath(forKey: key) {
                         do  {
                             try pngRepresentation.write(to: filePath,
                                                         options: .atomic)
@@ -114,7 +122,7 @@ class BusinessDetailsPresenter {
         
         case .fileSystem:
             var images: [UIImage] = []
-            let url = FileSystemUtils.folderPath(businessAlias)!
+            let url = fsUtil.folderPath(businessAlias)!
             let fileManager = FileManager.default
 
             do {

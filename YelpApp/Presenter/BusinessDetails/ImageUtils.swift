@@ -8,9 +8,13 @@
 import Foundation
 import UIKit
 
-class ImageUtils {
+protocol ImageResizer {
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage?
+}
+
+class ImageUtils: ImageResizer {
     
-    static func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
         let size = image.size
         
         let widthRatio  = targetSize.width  / size.width

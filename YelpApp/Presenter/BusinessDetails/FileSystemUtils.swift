@@ -7,9 +7,14 @@
 
 import Foundation
 
-class FileSystemUtils {
+protocol FileSystemUtilsProtocol {
+    func filePath(forKey key: String) -> URL?
+    func folderPath(_ folderName: String) -> URL?
+}
+
+class FileSystemUtils: FileSystemUtilsProtocol {
     
-    static func filePath(forKey key: String) -> URL? {
+    func filePath(forKey key: String) -> URL? {
         let fileManager = FileManager.default
         guard let documentURL = fileManager.urls(for: .documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first else { return nil }
         
@@ -41,7 +46,7 @@ class FileSystemUtils {
         return businessFolderURL.appendingPathComponent(key + String(count+1) + ".png")
     }
     
-    static func folderPath(_ folderName: String) -> URL? {
+    func folderPath(_ folderName: String) -> URL? {
         let fileManager = FileManager.default
         guard let documentURL = fileManager.urls(for: .documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first else { return nil }
         
