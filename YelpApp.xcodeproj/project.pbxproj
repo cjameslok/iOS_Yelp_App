@@ -35,6 +35,9 @@
 		28E3629928870AAB006B6D5F /* ImageEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E3629528870AAB006B6D5F /* ImageEntity+CoreDataProperties.swift */; };
 		28E3629A28870AAB006B6D5F /* AlbumEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E3629628870AAB006B6D5F /* AlbumEntity+CoreDataClass.swift */; };
 		28E3629B28870AAB006B6D5F /* AlbumEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E3629728870AAB006B6D5F /* AlbumEntity+CoreDataProperties.swift */; };
+		28E3629D28874E05006B6D5F /* FileSystemUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E3629C28874E05006B6D5F /* FileSystemUtils.swift */; };
+		28E3629F28874EC3006B6D5F /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E3629E28874EC3006B6D5F /* ImageUtils.swift */; };
+		28E362A128899F46006B6D5F /* CenterMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E362A028899F46006B6D5F /* CenterMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +71,9 @@
 		28E3629528870AAB006B6D5F /* ImageEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageEntity+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		28E3629628870AAB006B6D5F /* AlbumEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumEntity+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		28E3629728870AAB006B6D5F /* AlbumEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumEntity+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		28E3629C28874E05006B6D5F /* FileSystemUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemUtils.swift; sourceTree = "<group>"; };
+		28E3629E28874EC3006B6D5F /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
+		28E362A028899F46006B6D5F /* CenterMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterMapView.swift; sourceTree = "<group>"; };
 		542C5646EFBF517371C57446 /* Pods-YelpApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YelpApp.debug.xcconfig"; path = "Target Support Files/Pods-YelpApp/Pods-YelpApp.debug.xcconfig"; sourceTree = "<group>"; };
 		AB881158799D812EDD642CB0 /* Pods-YelpApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YelpApp.release.xcconfig"; path = "Target Support Files/Pods-YelpApp/Pods-YelpApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				286BB1A6286D4FDD006F4BE3 /* SearchViewPresenter.swift */,
-				28E3626728776FE7006B6D5F /* BusinessDetailsPresenter.swift */,
+				28E362A32889A25E006B6D5F /* BusinessDetails */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -167,6 +173,17 @@
 				28E362782886FD8A006B6D5F /* YelpAppDataModel.xcdatamodeld */,
 			);
 			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		28E362A32889A25E006B6D5F /* BusinessDetails */ = {
+			isa = PBXGroup;
+			children = (
+				28E3626728776FE7006B6D5F /* BusinessDetailsPresenter.swift */,
+				28E3629C28874E05006B6D5F /* FileSystemUtils.swift */,
+				28E3629E28874EC3006B6D5F /* ImageUtils.swift */,
+				28E362A028899F46006B6D5F /* CenterMapView.swift */,
+			);
+			path = BusinessDetails;
 			sourceTree = "<group>";
 		};
 		65EDD785FFB026E90A77986B /* Frameworks */ = {
@@ -305,6 +322,7 @@
 			files = (
 				28446F23286CC30C003C876B /* ViewController.swift in Sources */,
 				28E3626428771B93006B6D5F /* StorageType.swift in Sources */,
+				28E362A128899F46006B6D5F /* CenterMapView.swift in Sources */,
 				28E3629B28870AAB006B6D5F /* AlbumEntity+CoreDataProperties.swift in Sources */,
 				28E3629928870AAB006B6D5F /* ImageEntity+CoreDataProperties.swift in Sources */,
 				28E3626C28777005006B6D5F /* BusinessDetailsViewController.swift in Sources */,
@@ -320,11 +338,13 @@
 				286BB19B286CF43E006F4BE3 /* Open.swift in Sources */,
 				28E3626828776FE7006B6D5F /* BusinessDetailsPresenter.swift in Sources */,
 				286BB19E286CF43E006F4BE3 /* BusinessResults.swift in Sources */,
+				28E3629D28874E05006B6D5F /* FileSystemUtils.swift in Sources */,
 				28E3626E28786228006B6D5F /* BuisinessMapAnnotation.swift in Sources */,
 				286BB1A7286D4FDD006F4BE3 /* SearchViewPresenter.swift in Sources */,
 				286BB19D286CF43E006F4BE3 /* Location.swift in Sources */,
 				286BB19C286CF43E006F4BE3 /* Category.swift in Sources */,
 				28E3627A2886FD8A006B6D5F /* YelpAppDataModel.xcdatamodeld in Sources */,
+				28E3629F28874EC3006B6D5F /* ImageUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

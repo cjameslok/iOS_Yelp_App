@@ -15,13 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-//        let view = StationsViewController()
-//        let presenter = StationsPresenter(view: view)
-//        view.presenter = presenter
-//
-//        window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.rootViewController = view
-//        window?.makeKeyAndVisible()
+        // SQLlite file of Core Data contents
+        print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
         
         return true
     }
@@ -55,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
     
+    // Save Core Data changes made in the context
     func saveContext() {
         let context = persistentContainer.viewContext
         guard context.hasChanges else { return }

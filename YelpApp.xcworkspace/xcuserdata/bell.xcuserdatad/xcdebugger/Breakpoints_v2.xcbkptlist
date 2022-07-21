@@ -202,9 +202,9 @@
             filePath = "YelpApp/Presenter/BusinessDetailsPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "store(image:key:storageType:)"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "storeImage(image:key:storageType:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -250,8 +250,8 @@
             filePath = "YelpApp/View/BusinessDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,8 +266,8 @@
             filePath = "YelpApp/View/BusinessDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -282,25 +282,9 @@
             filePath = "YelpApp/View/BusinessDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
-            landmarkName = "openPhotoLibraryButton()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1BA7C643-6841-4F9D-AC1F-7FE41AE8D029"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YelpApp/View/BusinessDetailsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
-            landmarkName = "onCameraButtonClick()"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "openImagePicker(type:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -314,9 +298,9 @@
             filePath = "YelpApp/Presenter/BusinessDetailsPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "store(image:key:storageType:)"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "storeImage(image:key:storageType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -330,9 +314,9 @@
             filePath = "YelpApp/Presenter/BusinessDetailsPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "store(image:key:storageType:)"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "storeImage(image:key:storageType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -371,22 +355,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CC10D747-D351-4678-96DA-0845053C18F9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YelpApp/View/BusinessDetailsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "setupInfo()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "1E7CE73A-FB24-40FE-99C8-4FA4724C3A36"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -394,41 +362,9 @@
             filePath = "YelpApp/View/BusinessDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "mapView(_:didSelect:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2B0DB3B6-2658-4D05-8284-E880A889A37B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YelpApp/View/BusinessDetailsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "setupInfo()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "480EFFA8-D857-4592-BDE4-D62C5170C72D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YelpApp/Presenter/BusinessDetailsPresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
-            landmarkName = "folderPath(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -458,8 +394,8 @@
             filePath = "YelpApp/View/BusinessDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "setupInfo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -474,8 +410,8 @@
             filePath = "YelpApp/View/BusinessDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "setupInfo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -490,8 +426,8 @@
             filePath = "YelpApp/View/BusinessDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "setupInfo()"
             landmarkType = "7">
             <Locations>
@@ -538,9 +474,9 @@
             filePath = "YelpApp/Presenter/BusinessDetailsPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "store(image:key:storageType:)"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "storeImage(image:key:storageType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -554,9 +490,9 @@
             filePath = "YelpApp/Presenter/BusinessDetailsPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "retrieveAllImages(folderName:storageType:)"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "retrieveAllImages(businessAlias:storageType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -570,9 +506,9 @@
             filePath = "YelpApp/Presenter/BusinessDetailsPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
-            landmarkName = "retrieveAllImages(folderName:storageType:)"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "retrieveAllImages(businessAlias:storageType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -586,9 +522,9 @@
             filePath = "YelpApp/View/BusinessDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "retrieveExistingImages()"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "setupImageAlbum()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -602,8 +538,8 @@
             filePath = "YelpApp/Presenter/BusinessDetailsPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "createAlbum(for:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -618,9 +554,9 @@
             filePath = "YelpApp/View/BusinessDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "retrieveExistingImages()"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "setupImageAlbum()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -634,9 +570,41 @@
             filePath = "YelpApp/View/BusinessDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "retrieveExistingImages()"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "setupImageAlbum()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "619AD878-A365-4FCE-B086-16C26DD1B332"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YelpApp/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BC2D0AFF-FCBA-4060-ADEE-8657241A67FD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YelpApp/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

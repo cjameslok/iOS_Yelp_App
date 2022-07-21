@@ -44,7 +44,7 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
         resetLabels()
         setupInfo()
         setUpMap()
-        retrieveExistingImages()
+        setupImageAlbum()
         
     }
     
@@ -54,9 +54,9 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
         var menuItems: [UIAction] {
             return [
                 UIAction(title: "Open camera roll", image: UIImage(systemName: "photo"))
-                {(_) in self.onCameraButtonClick()},
+                {(_) in self.onCameraButtonClick(type: .photoLibrary)},
                 UIAction(title: "Take a picture", image: UIImage(systemName: "camera"))
-                {(_) in self.onCameraButtonClick()}
+                {(_) in self.onCameraButtonClick(type: .camera)}
             ]
         }
         
@@ -70,20 +70,6 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
         infoView.layer.shadowRadius = 10
         infoView.layer.cornerRadius = 10
         
-//        if let displayImageUrl = business!.image_url {
-//            DispatchQueue.global().async {
-//                if let data = try? Data( contentsOf: URL(string: displayImageUrl)!)
-//                {
-//                    if let image = UIImage(data: data) {
-//                        DispatchQueue.main.async {
-//                            self.displayImages.append(image)
-//                            self.displayImages.append(UIImage(imageLiteralResourceName: "sample-food"))
-//                        }
-//                    }
-//                }
-//            }
-//        }
-        
         let count: Int = business!.location!.display_address!.count
         if count > 0 {
             if let a1 = business!.location?.display_address?[0] {
@@ -92,13 +78,11 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
                 address1Label.text = ""
             }
             if count >= 2 {
-                
                 if let a2 = business!.location?.display_address?[1] {
                     address2Label.text = a2
                 } else {
                     address2Label.text = ""
                 }
-                
                 if count == 3 {
                     if business!.location?.display_address?.count == 3, let a3 = business!.location?.display_address?[2] {
                         address3Label.text = a3
@@ -123,7 +107,7 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
     private func setUpMap() {
         mapView.delegate = self
         let annotation = BusinessMapAnnotation(business: self.business)
-        mapView.centerToLocation(CLLocationCoordinate2D(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude))
+        mapView.centerToLocation(CLLocationCoordinate2D(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude), insets: UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0))
         //        mapView.setVisibleMapRect(rect, edgePadding: UIEdgeInsets(top: 200.0, left: 0.0, bottom: 0.0, right: 0.0), animated: true)
         mapView.addAnnotation(annotation)
         self.annotation = annotation
@@ -137,9 +121,9 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
         address3Label.text = ""
     }
     
-    private func retrieveExistingImages() {
+    private func setupImageAlbum() {
         presenter.createAlbum(for: business!)
-        let images = presenter.retrieveAllImages(folderName: business!.alias, storageType: .coreData)
+        let images = presenter.retrieveAllImages(businessAlias: business!.alias, storageType: .coreData)
         if !images.isEmpty{
             displayImages.append(contentsOf: images)
         }
@@ -155,25 +139,26 @@ class BusinessDetailsViewController: UIViewController, UINavigationControllerDel
     }
     
     @IBAction func onPhoneButtonClick(_ sender: Any) {
+        print("call number")
     }
     
-    private func onCameraButtonClick(){
-        print("clicked")
-        openPhotoLibraryButton()
+    private func onCameraButtonClick(type: UIImagePickerController.SourceType){
+        openImagePicker(type: .photoLibrary)
         guard let image = selectedImage else {return}
-        presenter.store(image: image, key: business!.alias, storageType: .coreData)
-        
+        presenter.storeImage(image: image, key: business!.alias, storageType: .coreData)
     }
+    
     
 }
 
+// MARK: UIImagePicker extension
 extension BusinessDetailsViewController: UIImagePickerControllerDelegate {
     
-    func openPhotoLibraryButton() {
+    func openImagePicker(type: UIImagePickerController.SourceType) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
-            imagePicker.sourceType = .photoLibrary;
+            imagePicker.sourceType = type;
             imagePicker.allowsEditing = true
             self.present(imagePicker, animated: true, completion: nil)
         }
@@ -182,13 +167,14 @@ extension BusinessDetailsViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.editedImage] as! UIImage
         self.selectedImage = image
-        presenter.store(image: image, key: business!.alias, storageType: .coreData)
+        presenter.storeImage(image: image, key: business!.alias, storageType: .coreData)
         displayImages.append(image)
         dismiss(animated:true, completion: nil)
     }
     
 }
 
+//MARK: MapView Extension
 extension BusinessDetailsViewController: MKMapViewDelegate {
     
     func mapView( _ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -220,9 +206,9 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if !displayImages.isEmpty {
-            //            view.detailCalloutAccessoryView = UIImageView(image: presenter.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
+            //            view.detailCalloutAccessoryView = UIImageView(image: ImageUtils.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
             //            view.rightCalloutAccessoryView = (UIButton(type: .detailDisclosure))
-            view.detailCalloutAccessoryView = UIImageView(image: presenter.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
+            view.detailCalloutAccessoryView = UIImageView(image: ImageUtils.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
             
             self.annotationView = view
             
@@ -233,22 +219,11 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
             view.addGestureRecognizer(leftSwipe)
             view.addGestureRecognizer(rightSwipe)
             
-            mapView.centerToLocation(CLLocationCoordinate2D(latitude: annotation!.coordinate.latitude, longitude: annotation!.coordinate.longitude))
+            mapView.centerToLocation(CLLocationCoordinate2D(latitude: annotation!.coordinate.latitude, longitude: annotation!.coordinate.longitude), insets: UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0))
             
             setMapFreeze(true)
             
         }
-    }
-    
-    // Convert CoordinateRegion to MapRect
-    func MKMapRectForCoordinateRegion(region:MKCoordinateRegion) -> MKMapRect {
-        let topLeft = CLLocationCoordinate2D(latitude: region.center.latitude + (region.span.latitudeDelta/2), longitude: region.center.longitude - (region.span.longitudeDelta/2))
-        let bottomRight = CLLocationCoordinate2D(latitude: region.center.latitude - (region.span.latitudeDelta/2), longitude: region.center.longitude + (region.span.longitudeDelta/2))
-        
-        let a = MKMapPoint(topLeft)
-        let b = MKMapPoint(bottomRight)
-        
-        return MKMapRect(origin: MKMapPoint(x:min(a.x,b.x), y:min(a.y,b.y)), size: MKMapSize(width: abs(a.x-b.x), height: abs(a.y-b.y)))
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -284,7 +259,7 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
             }
             
             print("swipe")
-            self.annotationView?.detailCalloutAccessoryView = UIImageView(image: presenter.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
+            self.annotationView?.detailCalloutAccessoryView = UIImageView(image: ImageUtils.resizeImage(image: displayImages[displayImageIndex], targetSize: CGSize(width: 300, height: 200)))
         }
         
     }
@@ -302,31 +277,6 @@ extension BusinessDetailsViewController: MKMapViewDelegate {
     
 }
 
-
-private extension MKMapView{
-    
-    func centerToLocation(_ location: CLLocationCoordinate2D, regionRadius: CLLocationDistance = 1000) {
-        
-        let coordinate =  location
-        let delta = CLLocationDegrees(0.003)
-        let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
-        let region = MKCoordinateRegion(center: coordinate, span: span)
-        // Adjust padding here
-        let insets = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
-        
-        let topLeft = CLLocationCoordinate2D(latitude: region.center.latitude + (region.span.latitudeDelta/2), longitude: region.center.longitude - (region.span.longitudeDelta/2))
-        let bottomRight = CLLocationCoordinate2D(latitude: region.center.latitude - (region.span.latitudeDelta/2), longitude: region.center.longitude + (region.span.longitudeDelta/2))
-        
-        let a = MKMapPoint(topLeft)
-        let b = MKMapPoint(bottomRight)
-        
-        let rect = MKMapRect(origin: MKMapPoint(x:min(a.x,b.x), y:min(a.y,b.y)), size: MKMapSize(width: abs(a.x-b.x), height: abs(a.y-b.y)))
-        
-        setVisibleMapRect(rect, edgePadding: insets, animated: true)
-        
-    }
-    
-}
 
 
 
