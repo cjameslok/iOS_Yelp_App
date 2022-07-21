@@ -45,7 +45,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         setupNavBar()
         setUpTableView()
-
         self.presenter = SearchViewPresenter(view: self)
         self.presenter.viewDidLoad()
     }
@@ -138,8 +137,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 extension SearchViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
+//        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+//        print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
 }
