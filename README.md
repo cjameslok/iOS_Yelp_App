@@ -4,5 +4,5 @@ A simple iOS app using the Yelp Fusion API
 
 ## Demo
 
-https://user-images.githubusercontent.com/28548026/180502655-a30747b4-32e4-49fb-a1e5-46b37ff21a05.mov
+https://user-images.githubusercontent.com/28548026/180502836-1b3f4f13-d205-49eb-9647-e81312a1fd34.mov
 
